@@ -1,0 +1,27 @@
+use-grammars = { only = ["rust", "go"] }
+
+[[language]]
+name = "rust"
+
+[[language]]
+name = "go"
+auto-format = true
+formatter = { command = "goimports" }
+language-servers = ["gopls","snippets-ls"]
+
+[language-server.gopls.formatting]
+gofumpt = true
+
+[language-server.gopls.config.ui]
+completion.usePlaceholders = true
+
+[language-server.gopls.config.ui.diagnostic.analyses]
+shadow = true
+unusedparams = true
+useany = true
+unusedvariable = true
+
+# install from: https://github.com/quantonganh/snippets-ls
+[language-server.snippets-ls]
+command = "snippets-ls"
+args = ["-config","/Users/jmerte/.config/helix/go-snippets.json"]
