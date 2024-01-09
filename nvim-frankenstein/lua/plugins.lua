@@ -46,128 +46,161 @@ function M.setup()
       end,
     }
 
-		-- Telescope
-		use {
-			'nvim-telescope/telescope.nvim', tag = '0.1.5',
-			-- or                            , branch = '0.1.x',
-			requires = { {'nvim-lua/plenary.nvim'} }
-		}
+    -- Telescope
+    use {
+        'nvim-telescope/telescope.nvim', tag = '0.1.5',
+        -- or                            , branch = '0.1.x',
+        requires = { {'nvim-lua/plenary.nvim'} }
+    }
 
-		-- Treesitter
-		use {
-			'nvim-treesitter/nvim-treesitter',
-			run = function()
-				local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-				ts_update()
-			end,
-		}
+    -- Treesitter
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = function()
+            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+            ts_update()
+        end,
+    }
 
-		-- LSP stuff
-		use {
-			'VonHeikemen/lsp-zero.nvim',
-			branch = 'v3.x',
-			requires = {
-				-- LSP Support
-				{'neovim/nvim-lspconfig'},
-				-- Autocompletion
-				{'hrsh7th/nvim-cmp'},
-				{'hrsh7th/cmp-buffer'},
-				{'hrsh7th/cmp-path'},
-				{'hrsh7th/cmp-nvim-lsp'},
-				{'hrsh7th/cmp-nvim-lua'},
-				{'saadparwaiz1/cmp_luasnip'},
-				-- Snippets
-				{'L3MON4D3/LuaSnip'},
-				{'rafamadriz/friendly-snippets'},
-				-- Extras
-				{
-					'windwp/nvim-autopairs',
-					opts = {
-						fast_wrap = {},
-						disable_filetype = {"TelescopePrompt","vim"},
-					},
-					config = function(_, opts)
-						require("nvim-autopairs").setup(opts)
+    -- LSP stuff
+    use {
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v3.x',
+        requires = {
+            -- LSP Support
+            {'neovim/nvim-lspconfig'},
+            -- Autocompletion
+            {'hrsh7th/nvim-cmp'},
+            {'hrsh7th/cmp-buffer'},
+            {'hrsh7th/cmp-path'},
+            {'hrsh7th/cmp-nvim-lsp'},
+            {'hrsh7th/cmp-nvim-lua'},
+            {'saadparwaiz1/cmp_luasnip'},
+            -- Snippets
+            {'L3MON4D3/LuaSnip'},
+            {'rafamadriz/friendly-snippets'},
+            -- Extras
+            {
+                'windwp/nvim-autopairs',
+                opts = {
+                    fast_wrap = {},
+                    disable_filetype = {"TelescopePrompt","vim"},
+                },
+                config = function(_, opts)
+                    require("nvim-autopairs").setup(opts)
 
-						-- setup cmp for autopairs
-						local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-						require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-					end,
-				},
-			}
-		}
+                    -- setup cmp for autopairs
+                    local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+                    require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+                end,
+            },
+        }
+    }
+
+    -- Testing
+    use ({
+        "nvim-neotest/neotest",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "antoinemadec/FixCursorHold.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-neotest/neotest-go"
+        },
+        config = function ()
+            -- get neotest namespace (api call creates or returns namespace)
+            local neotest_ns = vim.api.nvim_create_namespace("neotest")
+            vim.diagnostic.config({
+                virtual_text = {
+                    format = function(diagnostic)
+                        local message =
+                        diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
+                        return message
+                    end,
+                },
+            }, neotest_ns)
+            require("neotest").setup({
+                -- your neotest config here
+                adapters = {
+                    require("neotest-go"),
+                },
+            })
+        end,
+    })
+
+    -- Git gutter
+    use {"lewis6991/gitsigns.nvim"}
 
     -- Startup screen
     use {
-      "goolord/alpha-nvim",
-      config = function()
-        require("config.alpha").setup()
-      end,
+        "goolord/alpha-nvim",
+        config = function()
+            require("config.alpha").setup()
+        end,
     }
 
-		-- WhichKey
+    -- WhichKey
     use {
-      "folke/which-key.nvim",
-      config = function()
-        require("config.whichkey").setup()
-      end,
+        "folke/which-key.nvim",
+        config = function()
+            require("config.whichkey").setup()
+        end,
     }
 
-		-- Load only when require
+    -- Load only when require
     use { "nvim-lua/plenary.nvim", module = "plenary" }
 
     -- Better icons
     use {
-      "kyazdani42/nvim-web-devicons",
-      module = "nvim-web-devicons",
-      config = function()
-        require("nvim-web-devicons").setup { default = true }
-      end,
+        "kyazdani42/nvim-web-devicons",
+        module = "nvim-web-devicons",
+        config = function()
+            require("nvim-web-devicons").setup { default = true }
+        end,
     }
 
-		-- Status line
-		use {
-			'nvim-lualine/lualine.nvim',
-			requires = { 'nvim-tree/nvim-web-devicons', opt = true }
-		}
+    -- Status line
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    }
 
-		-- Buffer line 
-		use {
-			'akinsho/bufferline.nvim',
-			event = "BufReadPre",
-			requires = 'nvim-web-devicons'
-		}
+    -- Buffer line 
+    use {
+        'akinsho/bufferline.nvim',
+        tag = "*",
+        requires = 'nvim-tree/nvim-web-devicons',
+    }
 
     -- Better Comment
     use {
-      "numToStr/Comment.nvim",
-      opt = true,
-      keys = { "gc", "gcc", "gbc" },
-      config = function()
-        require("Comment").setup {}
-      end,
+        "numToStr/Comment.nvim",
+        opt = true,
+        keys = { "gc", "gcc", "gbc" },
+        config = function()
+            require("Comment").setup {}
+        end,
     }
 
     -- Easy motion
     use {
-      "ggandor/lightspeed.nvim",
-      keys = { "s", "S", "f", "F", "t", "T" },
-      config = function()
-        require("lightspeed").setup {}
-      end,
+        "ggandor/lightspeed.nvim",
+        keys = { "s", "S", "f", "F", "t", "T" },
+        config = function()
+            require("lightspeed").setup {}
+        end,
     }
 
     if packer_bootstrap then
-      print "Restart Neovim required after installation!"
-      require("packer").sync()
+        print "Restart Neovim required after installation!"
+        require("packer").sync()
     end
-  end
+end
 
-  packer_init()
+packer_init()
 
-  local packer = require "packer"
-  packer.init(conf)
-  packer.startup(plugins)
+local packer = require "packer"
+packer.init(conf)
+packer.startup(plugins)
 end
 
 return M

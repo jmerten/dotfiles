@@ -3,12 +3,14 @@ local lsp = require('lsp-zero')
 lsp.on_attach(function(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
 
-  vim.keymap.set("n", "<leader>k", function() vim.lsp.buf.hover() end, opts, { desc = "LSP Hover" })
+  vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts, { desc = "LSP Hover" })
   -- vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts, {desc = "LSP Open Float"})
   vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts, { desc = "LSP Code Actions"})
   -- vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts,{desc = "LSP References"})
   -- vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts,{desc = "LSP Rename Symbol"})
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts,{desc = "LSP Signature Help"})
+	vim.keymap.set("n", "]d", function () vim.diagnostic.goto_next() end, opts, {desc = "LSP Goto next diagnostic"})
+	vim.keymap.set("n", "[d", function () vim.diagnostic.goto_prev() end, opts, {desc = "LSP Goto previous diagnostic"})
 end)
 
 -- require('mason').setup({})
@@ -44,6 +46,7 @@ cmp.setup({
     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
     -- ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+    ['<Esc>'] = cmp.mapping.close(),
 		['<CR>'] = cmp.mapping.confirm({
 			behavior = cmp.ConfirmBehavior.Insert,
 			select = true,
@@ -52,4 +55,8 @@ cmp.setup({
 		['<Tab>'] = cmp_action.luasnip_supertab(),
 		['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
   }),
+})
+
+vim.diagnostic.config({
+	virtual_text = true
 })
