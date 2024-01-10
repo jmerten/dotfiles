@@ -61,7 +61,4 @@ require("lspconfig").lua_ls.setup {
   },
 }
 
-require("lspconfig").gopls.setup{}
-require("lspconfig").rust_analyzer.setup{}
-
 return M

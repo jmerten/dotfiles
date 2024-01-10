@@ -46,7 +46,7 @@ end
 
 local options = {
   completion = {
-    completeopt = "menu,menuone",
+    completeopt = "menu,menuone,noinsert,noselect",
   },
 
   window = {
@@ -81,7 +81,10 @@ local options = {
     },
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
+        -- You could replace select_next_item() with confirm({ select = true }) to get VS Code autocompletion behavior
         cmp.select_next_item()
+      -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+      -- this way you will only jump inside the snippet region
       elseif require("luasnip").expand_or_jumpable() then
         vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
       else

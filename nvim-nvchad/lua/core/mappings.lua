@@ -23,19 +23,15 @@ M.general = {
     ["<C-j>"] = { "<C-w>j", "Window down" },
     ["<C-k>"] = { "<C-w>k", "Window up" },
 
-    -- line movement
-    ["gh"] = { "g0", "Goto beginning of line" },
-    ["gl"] = { "g$", "Goto end of line" },
-
     -- save
-    -- ["<C-s>"] = { "<cmd> w <CR>", "Save file" },
+    ["<C-s>"] = { "<cmd> w <CR>", "Save file" },
 
     -- Copy all
-    -- ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
+    ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
 
     -- line numbers
-    -- ["<leader>n"] = { "<cmd> set nu! <CR>", "Toggle line number" },
-    -- ["<leader>rn"] = { "<cmd> set rnu! <CR>", "Toggle relative number" },
+    ["<leader>n"] = { "<cmd> set nu! <CR>", "Toggle line number" },
+    ["<leader>rn"] = { "<cmd> set rnu! <CR>", "Toggle relative number" },
 
     -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
     -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
@@ -46,14 +42,8 @@ M.general = {
     ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
 
-    -- Buffer management
-    ["<leader>b"] = { "<cmd> enew <CR>", "New " },
-    ["<leader>x"] = { ":bd<CR>", "Close current buffer" },
-    ["<leader>X"] = { ":bd!<CR>", "Force close current buffer" },
-    ["gn"] = { ":bnext<CR>", "Goto next buffer" },
-    ["gp"] = { ":bprevious<CR>", "Goto previous buffer" },
-
-    -- Cheatsheet
+    -- new buffer
+    ["<leader>b"] = { "<cmd> enew <CR>", "New buffer" },
     ["<leader>ch"] = { "<cmd> NvCheatsheet <CR>", "Mapping cheatsheet" },
 
     ["<leader>fm"] = {
@@ -86,31 +76,31 @@ M.general = {
 
 M.tabufline = {
   plugin = true,
---
---   n = {
---     -- cycle through s
---     ["<tab>"] = {buffer
---       function()
---         require("nvchad.tabufline").tabuflineNext()
---       end,
---       "Goto next ",
---     },
---
---     ["<S-tab>"] = {
---       function()
---         require("nvchad.tabufline").tabuflinePrev()
---       end,
---       "Goto prev ",
---     },
---
---     -- close  + hide terminal buffer
---     ["<leader>x"] = {
---       function()
---         require("nvchad.tabufline").close_()
---       end,
---       "Close ",
---     },
---   },
+
+  n = {
+    -- cycle through buffers
+    ["<tab>"] = {
+      function()
+        require("nvchad.tabufline").tabuflineNext()
+      end,
+      "Goto next buffer",
+    },
+
+    ["<S-tab>"] = {
+      function()
+        require("nvchad.tabufline").tabuflinePrev()
+      end,
+      "Goto prev buffer",
+    },
+
+    -- close buffer + hide terminal buffer
+    ["<leader>x"] = {
+      function()
+        require("nvchad.tabufline").close_buffer()
+      end,
+      "Close buffer",
+    },
+  },
 }
 
 M.comment = {
@@ -154,7 +144,7 @@ M.lspconfig = {
       "LSP definition",
     },
 
-    ["K"] = {
+    ["<leader>k"] = {
       function()
         vim.lsp.buf.hover()
       end,
@@ -182,7 +172,7 @@ M.lspconfig = {
       "LSP definition type",
     },
 
-    ["<leader>cr"] = {
+    ["<leader>ra"] = {
       function()
         require("nvchad.renamer").open()
       end,
@@ -283,10 +273,10 @@ M.telescope = {
     ["<leader>ff"] = { "<cmd> Telescope find_files <CR>", "Find files" },
     ["<leader>fa"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find all" },
     ["<leader>fw"] = { "<cmd> Telescope live_grep <CR>", "Live grep" },
-    ["<leader>fb"] = { "<cmd> Telescope s <CR>", "Find buffers" },
+    ["<leader>fb"] = { "<cmd> Telescope buffers <CR>", "Find buffers" },
     ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "Help page" },
     ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "Find oldfiles" },
-    ["<leader>fz"] = { "<cmd> Telescope current__fuzzy_find <CR>", "Find in current buffer" },
+    ["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
 
     -- git
     ["<leader>cm"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
