@@ -1,4 +1,4 @@
-local overrides = require("custom.configs.overrides")
+local overrides = require "custom.configs.overrides"
 
 ---@type NvPluginSpec[]
 local plugins = {
@@ -16,7 +16,7 @@ local plugins = {
   -- override plugin configs
   {
     "williamboman/mason.nvim",
-    opts = overrides.mason
+    opts = overrides.mason,
   },
 
   {
@@ -41,7 +41,8 @@ local plugins = {
   {
     "stevearc/conform.nvim",
     --  for users those who want auto-save conform + lazyloading!
-    -- event = "BufWritePre"
+    event = "BufWritePre",
+    lazy = false,
     config = function()
       require "custom.configs.conform"
     end,

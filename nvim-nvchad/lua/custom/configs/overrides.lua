@@ -25,6 +25,8 @@ M.mason = {
 
     -- go stuff 
     "gopls",
+    "goimports",
+    "goimports-reviser",
 
     -- rust stuff 
     "rust-analyzer",
