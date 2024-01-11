@@ -42,7 +42,6 @@ local plugins = {
     "stevearc/conform.nvim",
     --  for users those who want auto-save conform + lazyloading!
     event = "BufWritePre",
-    lazy = false,
     config = function()
       require "custom.configs.conform"
     end,
@@ -61,6 +60,110 @@ local plugins = {
   --   "mg979/vim-visual-multi",
   --   lazy = false,
   -- }
+
+  {
+    "ray-x/go.nvim",
+    dependencies = {
+      "ray-x/guihua.lua",
+      "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    opts = {},
+    config = function(_, opts)
+      require("go").setup(opts)
+    end,
+    event = { "CmdLineEnter" },
+    ft = { "go", "gomod" },
+    build = ':lua require("go.install").update_all_sync()',
+  },
+
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+    },
+  },
+
+  {
+    "mfussenegger/nvim-dap",
+    dependencies = {
+      "leoluz/nvim-dap-go",
+      opts = {},
+    },
+  },
+
+  {
+    "rcarriga/nvim-notify",
+    config = function()
+      require("notify").setup {
+        background_colour = "#000000",
+        enabled = false,
+      }
+    end,
+  },
+
+  {
+    "folke/noice.nvim",
+    config = function()
+      require("noice").setup {
+        -- add any options here
+        routes = {
+          {
+            filter = {
+              event = "msg_show",
+              any = {
+                { find = "%d+L, %d+B" },
+                { find = "; after #%d+" },
+                { find = "; before #%d+" },
+                { find = "%d fewer lines" },
+                { find = "%d more lines" },
+              },
+            },
+            opts = { skip = true },
+          },
+        },
+      }
+    end,
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      "rcarriga/nvim-notify",
+    },
+  },
+
+  -- {
+  --   "nvim-neotest/neotest",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "antoinemadec/FixCursorHold.nvim",
+  --     "nvim-treesitter/nvim-treesitter",
+  --
+  --     -- adapters
+  --     "nvim-neotest/neotest-go",
+  --     -- other test adapters go here
+  --   },
+  --   config = function()
+  --     -- get neotest namespace (api call creates or returns namespace)
+  --     local neotest_ns = vim.api.nvim_create_namespace "neotest"
+  --     vim.diagnostic.config({
+  --       virtual_text = {
+  --         format = function(diagnostic)
+  --           local message = diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
+  --           return message
+  --         end,
+  --       },
+  --     }, neotest_ns)
+  --     require("neotest").setup {
+  --       -- your neotest config here
+  --       adapters = {
+  --         require "neotest-go",
+  --       },
+  --     }
+  --   end,
+  -- },
 }
 
 return plugins

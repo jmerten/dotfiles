@@ -6,6 +6,10 @@ M.treesitter = {
     "lua",
     "markdown",
     "markdown_inline",
+    "json",
+    "bash",
+
+    -- development languages
     "go",
     "rust",
   },
@@ -23,12 +27,12 @@ M.mason = {
     "lua-language-server",
     "stylua",
 
-    -- go stuff 
+    -- go stuff
     "gopls",
     "goimports",
     "goimports-reviser",
 
-    -- rust stuff 
+    -- rust stuff
     "rust-analyzer",
   },
 }

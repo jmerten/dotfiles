@@ -30,6 +30,35 @@ M.general = {
     ["<leader>X"] = { ":bd!<CR>", "Force close current buffer" },
     ["gn"] = { ":bnext<CR>", "Goto next buffer" },
     ["gp"] = { ":bprevious<CR>", "Goto previous buffer" },
+
+    -- unit testing
+    ["<leader>tf"] = { ":GoTestFunc<cr>", "Test selected function" },
+    -- ["<leader>tf"] = {
+    --   function()
+    --     require("neotest").run.run()
+    --     -- require("neotest").output.open { enter = true }
+    --   end,
+    --   "Run selected unit test",
+    -- },
+    -- ["<leader>tF"] = {
+    --   function()
+    --     require("neotest").run.run(vim.fn.expand "%")
+    --     -- require("neotest").output.open { enter = true }
+    --   end,
+    --   "Run selected unit tests in file",
+    -- },
+    -- ["<leader>ts"] = {
+    --   function()
+    --     require("neotest").output_panel.toggle()
+    --   end,
+    --   "Toggle test summary",
+    -- },
+    -- ["<leader>tS"] = {
+    --   function()
+    --     require("neotest").run.stop()
+    --   end,
+    --   "Stop unit test",
+    -- },
   },
   v = {
     [">"] = { ">gv", "indent" },
