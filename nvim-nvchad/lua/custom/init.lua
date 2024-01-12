@@ -16,6 +16,11 @@
 -- additional vim options
 local opt = vim.opt
 
+-- override tabs
+opt.shiftwidth = 4
+opt.tabstop = 4
+opt.softtabstop = 4
+
 opt.scrolloff = 8
 opt.relativenumber = true
 

@@ -4,7 +4,7 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 local lspconfig = require "lspconfig"
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "rust_analyzer" }
+local servers = { "rust_analyzer", "jsonls", "bashls", "terraformls", "dockerls", "docker_compose_language_service" }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -30,7 +30,8 @@ lspconfig.gopls.setup {
 
     local opts = { buffer = bufnr, remap = false }
 
-    vim.keymap.set("n", "<leader>tf", ":GoTestFunc<CR>", opts, { desc = "Test selected function" })
+    vim.keymap.set("n", "<leader>tf", ":GoTestFunc -v<CR>", opts, { desc = "Test selected function" })
+    vim.keymap.set("n", "<leader>tF", ":GoTestFile<CR>", opts, { desc = "Test selected function" })
   end,
   capabilities = capabilities,
 
