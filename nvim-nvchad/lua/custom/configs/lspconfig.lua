@@ -16,7 +16,22 @@ end
 --
 -- lspconfig.pyright.setup { blabla}
 lspconfig.gopls.setup {
-  on_attach = on_attach,
+  on_attach = function(client, bufnr)
+    local utils = require "core.utils"
+    utils.load_mappings("lspconfig", { buffer = bufnr })
+
+    if client.server_capabilities.signatureHelpProvider then
+      require("nvchad.signature").setup(client)
+    end
+
+    if not utils.load_config().ui.lsp_semantic_tokens and client.supports_method "textDocument/semanticTokens" then
+      client.server_capabilities.semanticTokensProvider = nil
+    end
+
+    local opts = { buffer = bufnr, remap = false }
+
+    vim.keymap.set("n", "<leader>tf", ":GoTestFunc<CR>", opts, { desc = "Test selected function" })
+  end,
   capabilities = capabilities,
 
   settings = {

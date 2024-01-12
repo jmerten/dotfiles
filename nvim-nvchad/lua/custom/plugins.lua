@@ -79,6 +79,7 @@ local plugins = {
 
   {
     "rcarriga/nvim-dap-ui",
+    event = "VeryLazy",
     dependencies = {
       "mfussenegger/nvim-dap",
     },
@@ -86,6 +87,7 @@ local plugins = {
 
   {
     "mfussenegger/nvim-dap",
+    event = "VeryLazy",
     dependencies = {
       "leoluz/nvim-dap-go",
       opts = {},
@@ -94,6 +96,7 @@ local plugins = {
 
   {
     "rcarriga/nvim-notify",
+    event = "VeryLazy",
     config = function()
       require("notify").setup {
         background_colour = "#000000",
@@ -104,9 +107,24 @@ local plugins = {
 
   {
     "folke/noice.nvim",
+    event = "VeryLazy",
     config = function()
       require("noice").setup {
         -- add any options here
+        lsp = {
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true,
+          },
+        },
+        presets = {
+          bottom_search = true, -- use a classic bottom cmdline for search
+          -- command_palette = true, -- position the cmdline and popupmenu together
+          long_message_to_split = true, -- long messages will be sent to a split
+          inc_rename = false, -- enables an input dialog for inc-rename.nvim
+          lsp_doc_border = false, -- add a border to hover docs and signature help
+        },
         routes = {
           {
             filter = {
@@ -132,6 +150,17 @@ local plugins = {
       --   If not available, we use `mini` as the fallback
       "rcarriga/nvim-notify",
     },
+  },
+
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup {
+        -- Configuration here, or leave empty to use defaults
+      }
+    end,
   },
 
   -- {

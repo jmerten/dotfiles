@@ -8,6 +8,8 @@ M.treesitter = {
     "markdown_inline",
     "json",
     "bash",
+    "vim",
+    "vimdoc",
 
     -- development languages
     "go",

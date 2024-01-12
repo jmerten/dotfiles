@@ -23,16 +23,8 @@ M.general = {
     ["gh"] = { "g0", "Goto beginning of line" },
     ["gl"] = { "g$", "Goto end of line" },
 
-    -- buffer management
-    ["<leader>b"] = { "<Nop>" },
-    ["<leader>n"] = { ":enew<CR>", "Create new buffer" },
-    ["<leader>x"] = { ":bd<CR>", "Close current buffer" },
-    ["<leader>X"] = { ":bd!<CR>", "Force close current buffer" },
-    ["gn"] = { ":bnext<CR>", "Goto next buffer" },
-    ["gp"] = { ":bprevious<CR>", "Goto previous buffer" },
-
     -- unit testing
-    ["<leader>tf"] = { ":GoTestFunc<cr>", "Test selected function" },
+    -- ["<leader>tf"] = { ":GoTestFunc<cr>", "Test selected function" },
     -- ["<leader>tf"] = {
     --   function()
     --     require("neotest").run.run()
@@ -69,9 +61,6 @@ M.general = {
 }
 
 -- more keybinds!
-M.tabufline = {
-  n = {},
-}
 
 M.telescope = {
   n = {
