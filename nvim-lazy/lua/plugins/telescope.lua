@@ -1,11 +1,11 @@
 return {
-	"nvim-telescope/telescope.nvim",
-	branch = "0.1.x",
-	dependencies = {
-		{"nvim-lua/plenary.nvim"},
-		{'nvim-telescope/telescope-fzf-native.nvim', build = 'make'},
-	},
-	cmd = "Telescope",
+    "nvim-telescope/telescope.nvim",
+    branch = "0.1.x",
+    dependencies = {
+        { "nvim-lua/plenary.nvim" },
+        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    },
+    cmd = "Telescope",
     opts = {
         defaults = {
             vimgrep_arguments = {
@@ -47,23 +47,21 @@ return {
             set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
         },
     },
-	init = function()
-		local builtin = require("telescope.builtin")
+    init = function()
+        local builtin = require("telescope.builtin")
 
-		-- See :help telescope.builtin
-		vim.keymap.set('n', '<leader>ff', builtin.find_files, {}, {desc = "Find files"})
-		vim.keymap.set('n', '<leader>fg', builtin.git_files, {}, {desc = "Find git files"})
-		vim.keymap.set('n', '<leader>fs', function()
-			builtin.grep_string({ search = vim.fn.input("Grep > ") })
-		end, {desc = "Search through all files"})
-		vim.keymap.set('n', '<leader>vh', builtin.help_tags, {}, {desc = "View help tags"})
+        -- See :help telescope.builtin
+        vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Find files" })
+        vim.keymap.set('n', '<leader>fg', builtin.git_files, { desc = "Find git files" })
+        vim.keymap.set('n', '<leader>fs', builtin.live_grep, { desc = "Search through all files" })
+        vim.keymap.set('n', '<leader>vh', builtin.help_tags, { desc = "View help tags" })
 
-		vim.keymap.set("n","gd", builtin.lsp_definitions, {desc = "Goto Defintion"})
-		vim.keymap.set("n","gr", builtin.lsp_references, {desc = "Goto References"})
-		vim.keymap.set("n","gi", builtin.lsp_implementations, {desc = "Goto Implementations"})
-		vim.keymap.set("n", "<leader>gt", builtin.lsp_type_definitions, { desc = "Goto Type Definition" })
-		vim.keymap.set("n", "<leader>ds", builtin.lsp_document_symbols, { desc = "Document Symbols" })
-		vim.keymap.set("n", "<leader>ws", builtin.lsp_dynamic_workspace_symbols, { desc = "Workspace Symbols" })
+        vim.keymap.set("n", "gd", builtin.lsp_definitions, { desc = "Goto Defintion" })
+        vim.keymap.set("n", "gi", builtin.lsp_implementations, { desc = "Goto Implementations" })
+        vim.keymap.set("n", "gr", builtin.lsp_references, { desc = "Goto References" })
+        vim.keymap.set("n", "gt", builtin.lsp_type_definitions, { desc = "Goto Type Definition" })
+        vim.keymap.set("n", "<leader>ds", builtin.lsp_document_symbols, { desc = "Document Symbols" })
+        vim.keymap.set("n", "<leader>ws", builtin.lsp_dynamic_workspace_symbols, { desc = "Workspace Symbols" })
 
         -- Telescope Functions
         -- See `:help telescope.builtin`
@@ -76,10 +74,9 @@ return {
                 previewer = false,
             })
         end, { desc = 'Fuzzily search in current buffer' })
-
-	end,
-	config = function(_, opts)
+    end,
+    config = function(_, opts)
         require("telescope").setup(opts)
-		require("telescope").load_extension("fzf")
-	end,
+        require("telescope").load_extension("fzf")
+    end,
 }

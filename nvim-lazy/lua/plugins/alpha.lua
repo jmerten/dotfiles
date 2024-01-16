@@ -10,30 +10,37 @@ return {
         local dashboard = require "alpha.themes.dashboard"
         local function header()
             return {
-                [[                                           bbbbbbbb            ]],
-                [[                                           b::::::b            ]],
-                [[                                           b::::::b            ]],
-                [[                                           b::::::b            ]],
-                [[                                            b:::::b            ]],
-                [[nnnn  nnnnnnnn    vvvvvvv           vvvvvvv b:::::bbbbbbbbb    ]],
-                [[n:::nn::::::::nn   v:::::v         v:::::v  b::::::::::::::bb  ]],
-                [[n::::::::::::::nn   v:::::v       v:::::v   b::::::::::::::::b ]],
-                [[nn:::::::::::::::n   v:::::v     v:::::v    b:::::bbbbb:::::::b]],
-                [[  n:::::nnnn:::::n    v:::::v   v:::::v     b:::::b    b::::::b]],
-                [[  n::::n    n::::n     v:::::v v:::::v      b:::::b     b:::::b]],
-                [[  n::::n    n::::n      v:::::v:::::v       b:::::b     b:::::b]],
-                [[  n::::n    n::::n       v:::::::::v        b:::::b     b:::::b]],
-                [[  n::::n    n::::n        v:::::::v         b:::::bbbbbb::::::b]],
-                [[  n::::n    n::::n         v:::::v          b::::::::::::::::b ]],
-                [[  n::::n    n::::n          v:::v           b:::::::::::::::b  ]],
-                [[  nnnnnn    nnnnnn           vvv            bbbbbbbbbbbbbbbb   ]],
+                [[                                                                                ]],
+                [[ =================     ===============     ===============   ========  ======== ]],
+                [[ \\ . . . . . . .\\   //. . . . . . .\\   //. . . . . . .\\  \\. . .\\// . . // ]],
+                [[ ||. . ._____. . .|| ||. . ._____. . .|| ||. . ._____. . .|| || . . .\/ . . .|| ]],
+                [[ || . .||   ||. . || || . .||   ||. . || || . .||   ||. . || ||. . . . . . . || ]],
+                [[ ||. . ||   || . .|| ||. . ||   || . .|| ||. . ||   || . .|| || . | . . . . .|| ]],
+                [[ || . .||   ||. _-|| ||-_ .||   ||. . || || . .||   ||. _-|| ||-_.|\ . . . . || ]],
+                [[ ||. . ||   ||-'  || ||  `-||   || . .|| ||. . ||   ||-'  || ||  `|\_ . .|. .|| ]],
+                [[ || . _||   ||    || ||    ||   ||_ . || || . _||   ||    || ||   |\ `-_/| . || ]],
+                [[ ||_-' ||  .|/    || ||    \|.  || `-_|| ||_-' ||  .|/    || ||   | \  / |-_.|| ]],
+                [[ ||    ||_-'      || ||      `-_||    || ||    ||_-'      || ||   | \  / |  `|| ]],
+                [[ ||    `'         || ||         `'    || ||    `'         || ||   | \  / |   || ]],
+                [[ ||            .===' `===.         .==='.`===.         .===' /==. |  \/  |   || ]],
+                [[ ||         .=='   \_|-_ `===. .==='   _|_   `===. .===' _-|/   `==  \/  |   || ]],
+                [[ ||      .=='    _-'    `-_  `='    _-'   `-_    `='  _-'   `-_  /|  \/  |   || ]],
+                [[ ||   .=='    _-'          `-__\._-'         `-_./__-'         `' |. /|  |   || ]],
+                [[ ||.=='    _-'                                                     `' |  /==.|| ]],
+                [[ =='    _-'                                                            \/   `== ]],
+                [[ \   _-'                                                                `-_   / ]],
+                [[  `''                                                                      ``'  ]],
+                [[                                                                                ]],
             }
         end
 
         dashboard.section.header.val = header()
 
         dashboard.section.buttons.val = {
-            dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
+            dashboard.button("n", "  New File", ":enew<CR>"),
+            dashboard.button("d", "  Open Directory", ":Ex<CR>"),
+            dashboard.button("f", "  Find File", "<cmd> Telescope find_files <CR>"),
+            dashboard.button("s", "  Search Project", "<cmd> Telescope live_grep <CR>"),
             dashboard.button("c", "  Configuration", ":e $MYVIMRC <CR>"),
             dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
         }
@@ -83,12 +90,12 @@ return {
                 local stats = require("lazy").stats()
                 local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
                 dashboard.section.footer.val = "⚡ Neovim loaded "
-                .. stats.loaded
-                .. "/"
-                .. stats.count
-                .. " plugins in "
-                .. ms
-                .. "ms"
+                    .. stats.loaded
+                    .. "/"
+                    .. stats.count
+                    .. " plugins in "
+                    .. ms
+                    .. "ms"
                 pcall(vim.cmd.AlphaRedraw)
             end,
         })
