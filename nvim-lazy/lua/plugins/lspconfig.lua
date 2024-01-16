@@ -83,7 +83,7 @@ return {
                 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts, { desc = "LSP Goto declaration" })
                 vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts, { desc = "LSP Goto implementation" })
                 vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts, { desc = "LSP Goto references" })
-                vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts, { desc = "LSP Goto type definition" })
+                vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, opts, { desc = "LSP Goto type definition" })
                 vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts, { desc = "LSP Rename" })
                 vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts, { desc = "LSP Code action" })
                 vim.keymap.set('n', '<C-h>', vim.lsp.buf.signature_help, opts, { desc = "LSP Toggle signature help" })
@@ -94,9 +94,6 @@ return {
                 vim.keymap.set('n', '<leader>wl', function()
                     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
                 end, opts, { desc = "LSP List workspace folders" })
-                vim.keymap.set('n', '<leader>lf', function()
-                    vim.diagnostic.open_float { border = "rounded" }
-                end, { desc = "Open diagnostic float" })
             end,
         })
 
