@@ -14,8 +14,8 @@ M.treesitter = {
     -- development languages
     "go",
     "rust",
-    "terraform",
-    "dockerfile",
+    -- "terraform",
+    -- "dockerfile",
   },
   indent = {
     enable = true,
@@ -32,11 +32,11 @@ M.mason = {
     "stylua",
 
     -- generic
-    "json-lsp",
-    "bash-language-server",
-    "terraform-ls",
-    "dockerfile-language-server",
-    "docker-compose-language-server",
+    -- "json-lsp",
+    -- "bash-language-server",
+    -- "terraform-ls",
+    -- "dockerfile-language-server",
+    -- "docker-compose-language-server",
 
     -- go stuff
     "gopls",

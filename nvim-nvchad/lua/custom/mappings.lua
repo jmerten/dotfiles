@@ -2,98 +2,112 @@
 local M = {}
 
 M.general = {
-  n = {
-    [";"] = { ":", "enter command mode", opts = { nowait = true } },
+	n = {
+		[";"] = { ":", "enter command mode", opts = { nowait = true } },
 
-    --  format with conform
-    ["<leader>fm"] = {
-      function()
-        require("conform").format()
-      end,
-      "formatting",
-    },
+		--  format with conform
+		["<leader>fm"] = {
+			function()
+				require("conform").format()
+			end,
+			"formatting",
+		},
 
-    -- helpful rebinds
-    ["U"] = { "<C-r>", "Redo action" },
-    ["x"] = { '"_x' },
+		-- helpful rebinds
+		["U"] = { "<C-r>", "Redo action" },
+		["x"] = { '"_x' },
 
-    -- better line movement
-    ["<C-u>"] = { "<C-u>zz", "Page up and center" },
-    ["<C-d>"] = { "<C-d>zz", "Page down and center" },
-    ["gh"] = { "g0", "Goto beginning of line" },
-    ["gl"] = { "g$", "Goto end of line" },
+		-- better line movement
+		["<C-u>"] = { "<C-u>zz", "Page up and center" },
+		["<C-d>"] = { "<C-d>zz", "Page down and center" },
+		["gh"] = { "g0", "Goto beginning of line" },
+		["gl"] = { "g$", "Goto end of line" },
 
-    -- unit testing
-    -- ["<leader>tf"] = { ":GoTestFunc<cr>", "Test selected function" },
-    -- ["<leader>tf"] = {
-    --   function()
-    --     require("neotest").run.run()
-    --     -- require("neotest").output.open { enter = true }
-    --   end,
-    --   "Run selected unit test",
-    -- },
-    -- ["<leader>tF"] = {
-    --   function()
-    --     require("neotest").run.run(vim.fn.expand "%")
-    --     -- require("neotest").output.open { enter = true }
-    --   end,
-    --   "Run selected unit tests in file",
-    -- },
-    -- ["<leader>ts"] = {
-    --   function()
-    --     require("neotest").output_panel.toggle()
-    --   end,
-    --   "Toggle test summary",
-    -- },
-    -- ["<leader>tS"] = {
-    --   function()
-    --     require("neotest").run.stop()
-    --   end,
-    --   "Stop unit test",
-    -- },
-  },
-  v = {
-    [">"] = { ">gv", "indent" },
-    ["p"] = { [["_dP"]], "paste without yank" },
-    ["K"] = { ":move '<-2<CR>gv=gv", "Move selection up" },
-    ["J"] = { ":move '>+1<CR>gv=gv", "Move selection down" },
-  },
+		-- unit testing
+		-- ["<leader>tf"] = { ":GoTestFunc<cr>", "Test selected function" },
+		-- ["<leader>tf"] = {
+		--   function()
+		--     require("neotest").run.run()
+		--     -- require("neotest").output.open { enter = true }
+		--   end,
+		--   "Run selected unit test",
+		-- },
+		-- ["<leader>tF"] = {
+		--   function()
+		--     require("neotest").run.run(vim.fn.expand "%")
+		--     -- require("neotest").output.open { enter = true }
+		--   end,
+		--   "Run selected unit tests in file",
+		-- },
+		-- ["<leader>ts"] = {
+		--   function()
+		--     require("neotest").output_panel.toggle()
+		--   end,
+		--   "Toggle test summary",
+		-- },
+		-- ["<leader>tS"] = {
+		--   function()
+		--     require("neotest").run.stop()
+		--   end,
+		--   "Stop unit test",
+		-- },
+	},
+	v = {
+		[">"] = { ">gv", "indent" },
+		["p"] = { [["_dP"]], "paste without yank" },
+		["K"] = { ":move '<-2<CR>gv=gv", "Move selection up" },
+		["J"] = { ":move '>+1<CR>gv=gv", "Move selection down" },
+	},
 }
 
 -- more keybinds!
 
 M.telescope = {
-  n = {
-    ["<leader>fg"] = {
-      function()
-        require("telescope.builtin").git_files()
-      end,
-      "Find Git files",
-    },
-    ["<leader>fs"] = {
-      function()
-        require("telescope.builtin").grep_string { search = vim.fn.input "Grep > " }
-      end,
-      "Project search",
-    },
-  },
+	n = {
+		["<leader>fg"] = {
+			function()
+				require("telescope.builtin").git_files()
+			end,
+			"Find Git files",
+		},
+		["<leader>fs"] = {
+			function()
+				require("telescope.builtin").grep_string({ search = vim.fn.input("Grep > ") })
+			end,
+			"Project search",
+		},
+		["<leader>gt"] = { "<Nop>" },
+		["<leader>gs"] = { "<cmd> Telescope git_status <CR>", "Git status" },
+	},
 }
 
 M.gitsigns = {
-  n = {
-    ["<leader>rb"] = {
-      function()
-        require("gitsigns").reset_buffer()
-      end,
-      "Reset buffer",
-    },
-    ["<leader>tb"] = {
-      function()
-        require("gitsigns").toggle_current_line_blame()
-      end,
-      "Toggle current blame line",
-    },
-  },
+	n = {
+		["<leader>rb"] = {
+			function()
+				require("gitsigns").reset_buffer()
+			end,
+			"Reset buffer",
+		},
+		["<leader>tb"] = {
+			function()
+				require("gitsigns").toggle_current_line_blame()
+			end,
+			"Toggle current blame line",
+		},
+	},
+}
+
+M.lspconfig = {
+	n = {
+		["<leader>D"] = { "<Nop>" },
+		["<leader>gt"] = {
+			function()
+				vim.lsp.buf.type_definition()
+			end,
+			"LSP definition type",
+		},
+	},
 }
 
 return M
