@@ -114,14 +114,22 @@ return {
 
         lspconfig.gopls.setup {
             on_attach = function(client, bufnr)
-                local opts = { buffer = bufnr, remap = false }
+                -- Testing
+                vim.keymap.set("n", "<leader>tf", ":GoTestFunc -v<CR>",
+                    { buffer = bufnr, remap = false, desc = "Test selected function" })
+                vim.keymap.set("n", "<leader>tF", ":GoTestFile -v<CR>",
+                    { buffer = bufnr, remap = false, desc = "Test file" })
+                vim.keymap.set("n", "<leader>tc", ":GoCoverage -p<CR>",
+                    { buffer = bufnr, remap = false, desc = "Test package with coverage" })
 
-                vim.keymap.set("n", "<leader>tf", ":GoTestFunc -v<CR>", opts, { desc = "Test selected function" })
-                vim.keymap.set("n", "<leader>tF", ":GoTestFile -v<CR>", opts, { desc = "Test selected function" })
-                vim.keymap.set("n", "<leader>tb", ":GoBreakToggle<CR>", opts, { desc = "Debug toggle breakpoint" })
-                vim.keymap.set("n", "<leader>ts", ":GoDebug<CR>", opts, { desc = "Debug start" })
-                vim.keymap.set("n", "<leader>tS", ":GoDebug -s<CR>", opts, { desc = "Debug stop" })
-                vim.keymap.set("n", "<leader>tc", ":GoDbgContinue<CR>", opts, { desc = "Debug continue" })
+                -- Debugging
+                vim.keymap.set("n", "<leader>db", ":GoBreakToggle<CR>",
+                    { buffer = bufnr, remap = false, desc = "Debug toggle breakpoint" })
+                vim.keymap.set("n", "<leader>ds", ":GoDebug<CR>", { buffer = bufnr, remap = false, desc = "Debug start" })
+                vim.keymap.set("n", "<leader>dS", ":GoDebug -s<CR>",
+                    { buffer = bufnr, remap = false, desc = "Debug stop" })
+                vim.keymap.set("n", "<leader>dc", ":GoDbgContinue<CR>",
+                    { buffer = bufnr, remap = false, desc = "Debug continue" })
             end,
             capabilities = capabilities,
 

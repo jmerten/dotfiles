@@ -9,12 +9,12 @@ return {
             opts = { history = true, updateevents = "TextChanged,TextChangedI" },
             config = function(_, opts)
                 require("luasnip.loaders.from_vscode").lazy_load()
-                require("luasnip.loaders.from_vscode").lazy_load { paths = vim.g.vscodde_snippets_path or "" }
+                require("luasnip.loaders.from_vscode").lazy_load { paths = vim.g.vscode_snippets_path or "" }
 
                 vim.api.nvim_create_autocmd("InsertLeave", {
                     callback = function()
-                        if 
-                            require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()] and not require("luasnip").session.jump_active 
+                        if
+                            require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()] and not require("luasnip").session.jump_active
                         then
                             require("luasnip").unlink_current()
                         end
@@ -69,7 +69,7 @@ return {
         local cmp = require("cmp")
         local luasnip = require("luasnip")
 
-        vim.opt.completeopt = { "menu","menuone","noinsert","noselect" }
+        vim.opt.completeopt = { "menu", "menuone", "noinsert", "noselect" }
 
         -- See :help cmp-config
         cmp.setup({
@@ -92,14 +92,14 @@ return {
             },
 
             view = {
-                entries = { name = "custom", selection_order = "near_cursor"}
+                entries = { name = "custom", selection_order = "near_cursor" }
             },
 
-            formatting =  {
+            formatting = {
                 fields = { "kind", "abbr", "menu" },
                 format = function(entry, vim_item)
-                    local kind = require("lspkind").cmp_format({mode = "symbol_text", maxwidth = 50})(entry, vim_item)
-                    local strings = vim.split(kind.kind, "%s", {triempty = true})
+                    local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+                    local strings = vim.split(kind.kind, "%s", { triempty = true })
                     kind.kind = " " .. (strings[1] or "") .. " "
                     kind.menu = "   (" .. (strings[2] or "") .. ")"
 
@@ -126,14 +126,15 @@ return {
                         -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
                         -- this way you will only jump inside the snippet region
                     elseif require("luasnip").expand_or_locally_jumpable() then
-                        vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
+                        vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true),
+                            "")
                     else
                         fallback()
                     end
                 end, {
-                        "i",
-                        "s",
-                    }),
+                    "i",
+                    "s",
+                }),
                 ["<S-Tab>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_prev_item()
@@ -143,18 +144,17 @@ return {
                         fallback()
                     end
                 end, {
-                        "i",
-                        "s",
-                    }),
+                    "i",
+                    "s",
+                }),
             },
             sources = {
-                { name = "nvim_lsp"},
-                { name = "path"},
-                { name = "nvim_lua"},
-                { name = "luasnip", keyword_legth = 2},
-                { name = "buffer", keyword_length = 3},
+                { name = "nvim_lsp" },
+                { name = "path" },
+                { name = "nvim_lua" },
+                { name = "luasnip", keyword_legth = 2 },
+                { name = "buffer",  keyword_length = 3 },
             },
         })
-
     end,
 }
