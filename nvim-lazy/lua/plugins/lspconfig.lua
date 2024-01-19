@@ -104,6 +104,9 @@ return {
         local servers = {
             "rust_analyzer",
             "lua_ls",
+            -- "marksman",
+            -- "dockerls",
+            -- "terraformls",
         }
 
         for _, lsp in ipairs(servers) do

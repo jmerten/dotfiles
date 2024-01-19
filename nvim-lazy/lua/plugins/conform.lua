@@ -5,7 +5,7 @@ return {
         {
             "<leader>fm",
             function()
-                require("conform").format({async = true, lsp_fallback = true})
+                require("conform").format({ async = true, lsp_fallback = true })
             end,
             "Format with conform",
         },
@@ -14,19 +14,23 @@ return {
         require("conform").setup({
             lsp_fallback = true,
             formatters_by_ft = {
-                lua = {"stylua"},
-                go = {"goimports","goimports-reviser","gofumpt"},
-                rust = {"rustfmt"},
-                sh = {"shfmt"},
+                lua = { "stylua" },
+                go = {
+                    "goimports",
+                    "goimports-reviser",
+                    -- "gofumpt"  -- goimports-reviser should handle this, add if needed
+                },
+                rust = { "rustfmt" },
+                sh = { "shfmt" },
             },
             formatters = {
                 goimports_reviser = {
                     command = "goimports-reviser",
-                    args = { 
-                        "-rm-unused", 
-                        "-set-alias", 
+                    args = {
+                        "-rm-unused",
+                        "-set-alias",
                         "-format",
-                        -- "-company-prefixes 'some.url'",
+                        -- "-company-prefixes 'some.url'", -- if needed
                     },
                     -- comment out this line to install conform, then uncomment once installed
                     cwd = require("conform.util").root_file({ "go.mod" }),

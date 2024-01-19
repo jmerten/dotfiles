@@ -48,6 +48,9 @@ return {
             -- development languages
             'go',
             'rust',
+            -- 'dockerfile',
+            -- 'terraform',
+            -- 'puppet',
         },
 
     },

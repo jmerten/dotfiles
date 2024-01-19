@@ -1,10 +1,14 @@
 local api = vim.api
 local g = vim.g
+local vimdir = vim.fn.stdpath("config")
 
 api.nvim_set_keymap("", "<Space>", "<Nop>", { noremap = true, silent = true })
 g.mapleader = " "
 g.maplocalleader = " "
-g.vscode_snippets_path = { "./snippets/go", "./snippets/rust" }
+g.vscode_snippets_path = {
+    vimdir .. "/snippets/go",
+    vimdir .. "/snippets/rust"
+}
 
 local keymap = vim.keymap
 
@@ -43,7 +47,6 @@ keymap.set("n", "gl", "g$", { desc = "Goto end of line" })
 
 -- general
 keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "View project directory" })
-keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Cancel highlighting" })
 keymap.set("n", "x", '"_x')
 keymap.set("n", "U", "<C-r>", { desc = "Redo action" })
 
