@@ -11,12 +11,6 @@ return {
             vim.cmd "colorscheme gruvbox-material"
         end,
     },
-    -- {
-    --     "catppuccin/nvim",
-    --     config = function()
-    --         vim.cmd "colorscheme catppuccin"
-    --     end,
-    -- },
     {
         "nvim-tree/nvim-web-devicons",
         event = "VeryLazy",
