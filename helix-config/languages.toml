@@ -1,7 +1,8 @@
-use-grammars = { only = ["rust", "go"] }
+use-grammars = { only = ["lua", "rust", "go"] }
 
 [[language]]
 name = "rust"
+auto-format = true
 
 [[language]]
 name = "go"

@@ -5,6 +5,8 @@ line-number = 'relative'
 mouse = false
 bufferline = "multiple"
 true-color = true
+scrolloff = 8
+color-modes = true
 
 [editor.cursor-shape]
 insert = 'bar'
@@ -19,8 +21,22 @@ display-messages = true
 
 [keys.normal]
 esc = ["collapse_selection","keep_primary_selection"]
+n = ["search_next","align_view_center"]
+N = ["search_prev","align_view_center"]
+# C-u = ["half_page_up","align_view_center"]
+# C-d = ["half_page_down","align_view_center"]
+
+[keys.insert]
+j = { k = "normal_mode" } # exit insert mode
+
+[keys.normal.space]
+x = ":bc" # close current buffer
+X = ":bc!" # force close current buffer
+
+[keys.normal.space.t]
+g = ":sh go test -v ./..."
 
 [editor.indent-guides]
 render = true
-character = "┆" # Some characters that work well: "▏", "┆", "┊", "⸽"
+character = "▏" # Some characters that work well: "▏", "┆", "┊", "⸽"
 # skip-levels = 1

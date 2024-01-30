@@ -1,0 +1,14 @@
+{
+    "println": {
+        "prefix": "pln",
+        "body": [
+            "println!(\"$1${2:value}\",$3);"
+        ],
+        "description": "println"
+    },
+    "tests": {
+        "prefix": "tes",
+        "body": "#[cfg(test)]\nmod tests {\n\tuser super::*;\n\n\t#[test]\n\tfn ${1:function}() {\n\t\t\n\t}\n}",
+        "description": "testing template"
+    }
+}
