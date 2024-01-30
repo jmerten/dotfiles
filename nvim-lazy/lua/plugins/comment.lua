@@ -10,7 +10,7 @@ return {
         { "gb",  mode = "x",          desc = "Comment toggle blockwise (visual)" },
     },
     init = function()
-        vim.keymap.set("n", "<C-c>", function()
+        vim.keymap.set({ "n", "i" }, "<C-c>", function()
             require("Comment.api").toggle.linewise.current()
         end, { desc = "Toggle comment" })
         vim.keymap.set("v", "<C-c>", "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",

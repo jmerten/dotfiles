@@ -21,6 +21,7 @@ return {
                     -- "gofumpt"  -- goimports-reviser should handle this, add if needed
                 },
                 rust = { "rustfmt" },
+                toml = { "taplo" },
                 sh = { "shfmt" },
             },
             formatters = {

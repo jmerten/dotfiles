@@ -4,6 +4,7 @@ return {
     dependencies = {
         { "nvim-lua/plenary.nvim" },
         { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+        { 'debugloop/telescope-undo.nvim' },
     },
     cmd = "Telescope",
     opts = {
@@ -46,6 +47,15 @@ return {
             color_devicons = true,
             set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
         },
+        extensions = {
+            undo = {
+                side_by_side = true,
+                layout_strategy = "vertical",
+                layout_config = {
+                    preview_height = 0.8,
+                },
+            },
+        },
     },
     init = function()
         local builtin = require("telescope.builtin")
@@ -74,9 +84,11 @@ return {
                 previewer = false,
             })
         end, { desc = 'Fuzzily search in current buffer' })
+        vim.keymap.set('n', '<leader>u', '<cmd>Telescope undo<CR>', { desc = "Undo history" })
     end,
     config = function(_, opts)
         require("telescope").setup(opts)
         require("telescope").load_extension("fzf")
+        require("telescope").load_extension("undo")
     end,
 }
