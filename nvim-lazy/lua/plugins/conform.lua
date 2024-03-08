@@ -20,6 +20,7 @@ return {
                     "goimports-reviser",
                     -- "gofumpt"  -- goimports-reviser should handle this, add if needed
                 },
+                python = { "isort", "black" },
                 rust = { "rustfmt" },
                 toml = { "taplo" },
                 sh = { "shfmt" },

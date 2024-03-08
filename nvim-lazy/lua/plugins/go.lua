@@ -1,19 +1,26 @@
 return {
     {
-        "ray-x/go.nvim",
+        "olexsmir/gopher.nvim",
         dependencies = {
-            "ray-x/guihua.lua",
-            "neovim/nvim-lspconfig",
+            "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
-            "mfussenegger/nvim-dap",
-            "rcarriga/nvim-dap-ui",
-            "theHamsta/nvim-dap-virtual-text",
         },
-        opts = {},
+        opts = {
+            commands = {
+                go = "go",
+                gomodifytags = "gomodifytags",
+                gotests = "~/go/bin/gotests",
+                impl = "impl",
+                iferr = "iferr",
+            },
+        },
         config = function(_, opts)
-            require("go").setup(opts)
+            require("gopher").setup(opts)
         end,
-        event = "CmdLineEnter",
+        -- event = "CmdLineEnter",
         ft = { "go", "gomod" },
+        build = function()
+            vim.cmd [[silent! GoInstallDeps]]
+        end,
     },
 }
