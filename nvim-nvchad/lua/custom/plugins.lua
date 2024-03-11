@@ -1,42 +1,38 @@
 local overrides = require("custom.configs.overrides")
-
----@type NvPluginSpec[]
 local plugins = {
-
-	-- Override plugin definition options
-
-	{
-		"hrsh7th/nvim-cmp",
-		dependencies = {
-			"onsails/lspkind.nvim",
-		},
-	},
-
-	{
-		"neovim/nvim-lspconfig",
-		config = function()
-			require("plugins.configs.lspconfig")
-			require("custom.configs.lspconfig")
-		end, -- Override to setup mason-lspconfig
-	},
-
-	-- override plugin configs
 	{
 		"williamboman/mason.nvim",
 		opts = overrides.mason,
 	},
-
+	{
+		"neovim/nvim-lspconfig",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			require("plugins.configs.lspconfig")
+			require("custom.configs.lspconfig")
+		end,
+	},
 	{
 		"nvim-treesitter/nvim-treesitter",
 		opts = overrides.treesitter,
 	},
-
+	{
+		"nvim-telescope/telescope.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+			"debugloop/telescope-undo.nvim",
+		},
+		opts = overrides.telescope,
+		config = function()
+			require("telescope").load_extension("fzf")
+			require("telescope").load_extension("undo")
+		end,
+	},
 	{
 		"nvim-tree/nvim-tree.lua",
 		opts = overrides.nvimtree,
 	},
-
-	-- Install a plugin
 	{
 		"max397574/better-escape.nvim",
 		event = "InsertEnter",
@@ -44,135 +40,92 @@ local plugins = {
 			require("better_escape").setup()
 		end,
 	},
-
 	{
 		"stevearc/conform.nvim",
-		--  for users those who want auto-save conform + lazyloading!
 		event = "BufWritePre",
+		keys = {
+			{
+				"<leader>fm",
+				function()
+					require("conform").format({ async = true, lsp_fallback = true })
+				end,
+				"Format with conform",
+			},
+		},
 		config = function()
 			require("custom.configs.conform")
 		end,
 	},
-
-	-- To make a plugin not be loaded
-	-- {
-	--   "NvChad/nvim-colorizer.lua",
-	--   enabled = false
-	-- },
-
-	-- All NvChad plugins are lazy-loaded by default
-	-- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`
-	-- If you want a plugin to load on startup, add `lazy = false` to a plugin spec, for example
-	-- {
-	--   "mg979/vim-visual-multi",
-	--   lazy = false,
-	-- }
-
 	{
-		"ray-x/go.nvim",
-		dependencies = {
-			"ray-x/guihua.lua",
-			"neovim/nvim-lspconfig",
-			"nvim-treesitter/nvim-treesitter",
-			"rcarriga/nvim-dap-ui",
-			"rcarriga/nvim-dap-ui",
-			"theHamsta/nvim-dap-virtual-text",
-		},
-		opts = {},
-		config = function(_, opts)
-			require("go").setup(opts)
+		"kylechui/nvim-surround",
+		version = "*",
+		event = "VeryLazy",
+		config = function()
+			require("nvim-surround").setup({})
 		end,
-		event = { "CmdLineEnter" },
-		ft = { "go", "gomod" },
-		build = ':lua require("go.install").update_all_sync()',
 	},
-
 	{
 		"folke/trouble.nvim",
 		event = "VeryLazy",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
-		init = function()
-			vim.keymap.set("n", "<leader>D", function()
-				require("trouble").toggle("workspace_diagnostics")
-			end, { desc = "Toggle workspace diagnostics" })
-		end,
 		opts = {},
 	},
-
 	{
-		"folke/noice.nvim",
-		event = "VeryLazy",
+		"pwntester/octo.nvim",
 		dependencies = {
-			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-			"MunifTanjim/nui.nvim",
-			-- OPTIONAL:
-			--   `nvim-notify` is only needed, if you want to use the notification view.
-			--   If not available, we use `mini` as the fallback
-			{
-				"rcarriga/nvim-notify",
-				event = "VeryLazy",
-				config = function()
-					require("notify").setup({
-						background_colour = "#000000",
-						enabled = false,
-					})
-				end,
-			},
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+			"nvim-tree/nvim-web-devicons",
 		},
-		opts = {
-			-- add any options here
-			cmdline = {
-				view = "cmdline",
-			},
-			lsp = {
-				override = {
-					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-					["vim.lsp.util.stylize_markdown"] = true,
-					["cmp.entry.get_documentation"] = true,
-				},
-				hover = { enabled = false },
-				signature = { enabled = false },
-			},
-			presets = {
-				bottom_search = true, -- use a classic bottom cmdline for search
-				command_palette = true, -- position the cmdline and popupmenu together
-				long_message_to_split = true, -- long messages will be sent to a split
-				inc_rename = false, -- enables an input dialog for inc-rename.nvim
-				lsp_doc_border = false, -- add a border to hover docs and signature help
-			},
-			routes = {
-				{
-					filter = {
-						event = "msg_show",
-						any = {
-							{ find = "%d+L, %d+B" },
-							{ find = "; after #%d+" },
-							{ find = "; before #%d+" },
-							{ find = "%d fewer lines" },
-							{ find = "%d more lines" },
-						},
-					},
-					opts = { skip = true },
-				},
-			},
+		keys = {
+			{ "<leader>O", "<cmd>Octo<CR>", desc = "Octo" },
 		},
-		config = function(_, opts)
-			require("noice").setup(opts)
+		config = function()
+			require("custom.configs.octo")
 		end,
 	},
-
 	{
-		"kylechui/nvim-surround",
-		version = "*", -- Use for stability; omit to use `main` branch for the latest features
-		event = "VeryLazy",
+		"ThePrimeagen/refactoring.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
 		config = function()
-			require("nvim-surround").setup({
-				-- Configuration here, or leave empty to use defaults
+			require("refactoring").setup()
+		end,
+	},
+	{
+		"saecki/crates.nvim",
+		dependencies = {
+			"hrsh7th/nvim-cmp",
+		},
+		ft = { "rust", "toml" },
+		config = function(_, opts)
+			require("crates").setup(opts)
+			require("crates").show()
+		end,
+	},
+	{
+		"hrsh7th/nvim-cmp",
+		opts = function()
+			local M = require("plugins.configs.cmp")
+			table.insert(M.sources, { name = "crates" })
+			return M
+		end,
+	},
+	{
+		"roobert/surround-ui.nvim",
+		dependencies = {
+			"kylechui/nvim-surround",
+			"folke/which-key.nvim",
+		},
+		config = function()
+			require("surround-ui").setup({
+				root_key = "S",
 			})
 		end,
 	},
 }
-
 return plugins

@@ -1,15 +1,16 @@
 local options = {
 	lsp_fallback = true,
-
 	formatters_by_ft = {
 		lua = { "stylua" },
-
-		go = { "goimports", "goimports-reviser", "gofmpt" },
+		go = {
+			-- "gofumpt",
+			"goimports-reviser",
+			"golines",
+		},
 		rust = { "rustfmt" },
-
+		toml = { "taplo" },
 		sh = { "shfmt" },
 	},
-
 	formatters = {
 		goimports_reviser = {
 			command = "goimports-reviser",
@@ -17,20 +18,22 @@ local options = {
 				"-rm-unused",
 				"-set-alias",
 				"-format",
-				-- "-company-prefixes 'some.url'"
+				-- "-company-prefixes 'some.url'", -- if needed
 			},
 			cwd = require("conform.util").root_file({ "go.mod" }),
 		},
+		rustfmt = {
+			command = "rustfmt",
+			args = {
+				"--edition=2021",
+			},
+			cwd = require("conform.util").root_file({ "Cargo.toml" }),
+		},
 	},
-
-	-- adding same formatter for multiple filetypes can look too much work for some
-	-- instead of the above code you could just use a loop! the config is just a table after all!
-
 	format_on_save = {
-		-- These options will be passed to conform.format()
+		-- These options will be  passed to conform.format()
 		timeout_ms = 500,
 		lsp_fallback = true,
 	},
 }
-
 require("conform").setup(options)

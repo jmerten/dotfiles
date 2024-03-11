@@ -2,15 +2,11 @@ local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
 local lspconfig = require("lspconfig")
+local util = require("lspconfig/util")
 
--- if you just want default config for the servers then put them in a table
 local servers = {
-	"rust_analyzer",
-	-- "jsonls",
-	-- "bashls",
-	-- "terraformls",
-	-- "dockerls",
-	-- "docker_compose_language_service"
+	-- "rust_analyzer",
+	-- "lua_ls",
 }
 
 for _, lsp in ipairs(servers) do
@@ -20,30 +16,31 @@ for _, lsp in ipairs(servers) do
 	})
 end
 
---
--- lspconfig.pyright.setup { blabla}
-lspconfig.gopls.setup({
-	on_attach = function(client, bufnr)
-		local utils = require("core.utils")
-		utils.load_mappings("lspconfig", { buffer = bufnr })
-
-		if client.server_capabilities.signatureHelpProvider then
-			require("nvchad.signature").setup(client)
-		end
-
-		if not utils.load_config().ui.lsp_semantic_tokens and client.supports_method("textDocument/semanticTokens") then
-			client.server_capabilities.semanticTokensProvider = nil
-		end
-
-		local opts = { buffer = bufnr, remap = false }
-
-		vim.keymap.set("n", "<leader>tf", ":GoTestFunc -v<CR>", opts, { desc = "Test selected function" })
-		vim.keymap.set("n", "<leader>tF", ":GoTestFile -v<CR>", opts, { desc = "Test selected function" })
-	end,
+lspconfig.rust_analyzer.setup({
+	on_attach = on_attach,
 	capabilities = capabilities,
+	filetypes = { "rust" },
+	root_dir = util.root_pattern("Cargo.toml"),
+	-- settings = {
+	-- 	["rust_analyzer"] = {
+	-- 		cargo = {
+	-- 			allFeatures = true,
+	-- 		},
+	-- 	},
+	-- },
+})
 
+lspconfig.gopls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	cmd = { "gopls" },
+	filetypes = { "go", "gomod", "gowork", "gotmpl" },
+	root_dir = util.root_pattern("go.work", "go.mod", ".git"),
 	settings = {
 		gopls = {
+			completeUnimported = true,
+			usePlaceholders = true,
+			staticcheck = true,
 			analyses = {
 				shadow = true,
 				unusedparams = true,
@@ -59,8 +56,6 @@ lspconfig.gopls.setup({
 				parameterNames = true,
 				rangeVariableTypes = true,
 			},
-			staticcheck = true,
-			gofumpt = true,
 		},
 	},
 })

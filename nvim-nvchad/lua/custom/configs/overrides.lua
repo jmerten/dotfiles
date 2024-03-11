@@ -1,67 +1,71 @@
 local M = {}
 
 M.treesitter = {
-  ensure_installed = {
-    "vim",
-    "lua",
-    "markdown",
-    "markdown_inline",
-    "json",
-    "bash",
-    "vim",
-    "vimdoc",
+	ensure_installed = {
+		-- defaults
+		"vim",
+		"vimdoc",
+		"lua",
+		"json",
+		"bash",
+		"markdown",
+		"markdown_inline",
 
-    -- development languages
-    "go",
-    "rust",
-    -- "terraform",
-    -- "dockerfile",
-  },
-  indent = {
-    enable = true,
-    -- disable = {
-    --   "python"
-    -- },
-  },
+		-- development
+		"go",
+		"rust",
+	},
+	indent = {
+		enable = true,
+	},
 }
 
 M.mason = {
-  ensure_installed = {
-    -- lua stuff
-    "lua-language-server",
-    "stylua",
+	ensure_installed = {
+		-- lua stuff
+		"lua-language-server",
+		"stylua",
 
-    -- generic
-    -- "json-lsp",
-    -- "bash-language-server",
-    -- "terraform-ls",
-    -- "dockerfile-language-server",
-    -- "docker-compose-language-server",
+		-- development
+		-- golang
+		"goimports-reviser", -- go formatter
+		"golines",
 
-    -- go stuff
-    "gopls",
-    "goimports",
-    "goimports-reviser",
+		-- rust
+		"rust-analyzer",
 
-    -- rust stuff
-    "rust-analyzer",
-  },
+		-- others
+		"taplo", -- toml formatter
+
+		-- low-level
+		"shfmt",
+	},
 }
 
--- git support in nvimtree
 M.nvimtree = {
-  git = {
-    enable = true,
-  },
+	git = {
+		enable = true,
+	},
+	renderer = {
+		highlight_git = true,
+		icons = {
+			show = {
+				git = true,
+			},
+		},
+	},
+}
 
-  renderer = {
-    highlight_git = true,
-    icons = {
-      show = {
-        git = true,
-      },
-    },
-  },
+M.telescope = {
+	extensions = {
+		undo = {
+			side_by_side = true,
+			layout_strategy = "vertical",
+			layout_config = {
+				preview_height = 0.8,
+			},
+		},
+	},
 }
 
 return M
