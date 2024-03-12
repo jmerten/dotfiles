@@ -133,5 +133,15 @@
         "prefix": "fef",
         "body": "fmt.Errorf(\"$1: %w\", err)",
         "description": "Standard error format"
+    },
+    "assert panic": {
+        "prefix": "cp",
+        "body": "func assertPanic(t *testing.T) {\n\tdefer func() {\n\t\tif r := recover(); r == nil {\n\t\t\tt.Errorf(\"The code did not panic\")\n\t\t}\n\t}()\n}",
+        "description": "Assert panic function"
+    },
+    "assert no panic": {
+        "prefix": "cnp",
+        "body": "func assertNoPanic(t *testing.T) {\n\tdefer func() {\n\t\tif r := recover(); r != nil {\n\t\t\tt.Errorf(\"The code panicked\")\n\t\t}\n\t}()\n}",
+        "description": "Assert no panic function"
     }
 }

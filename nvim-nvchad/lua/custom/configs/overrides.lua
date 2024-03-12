@@ -12,8 +12,6 @@ M.treesitter = {
 		"markdown_inline",
 
 		-- development
-		"go",
-		"rust",
 	},
 	indent = {
 		enable = true,
@@ -27,14 +25,6 @@ M.mason = {
 		"stylua",
 
 		-- development
-		-- golang
-		"goimports-reviser", -- go formatter
-		"golines",
-
-		-- rust
-		"rust-analyzer",
-
-		-- others
 		"taplo", -- toml formatter
 
 		-- low-level

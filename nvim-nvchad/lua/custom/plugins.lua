@@ -111,7 +111,47 @@ local plugins = {
 		"hrsh7th/nvim-cmp",
 		opts = function()
 			local M = require("plugins.configs.cmp")
+			local cmp = require("cmp")
 			table.insert(M.sources, { name = "crates" })
+			M.mapping = {
+				["<C-p>"] = cmp.mapping.select_prev_item(),
+				["<C-n>"] = cmp.mapping.select_next_item(),
+				["<C-d>"] = cmp.mapping.scroll_docs(-4),
+				["<C-u>"] = cmp.mapping.scroll_docs(4),
+				["<C-Space>"] = cmp.mapping.complete(),
+				["<ESC>"] = cmp.mapping.close(),
+				["<CR>"] = cmp.mapping.confirm({
+					behavior = cmp.ConfirmBehavior.Insert,
+					select = true,
+				}),
+				["<Tab>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.select_next_item()
+					elseif require("luasnip").expand_or_jumpable() then
+						vim.fn.feedkeys(
+							vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true),
+							""
+						)
+					else
+						fallback()
+					end
+				end, {
+					"i",
+					"s",
+				}),
+				["<S-Tab>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.select_prev_item()
+					elseif require("luasnip").jumpable(-1) then
+						vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
+					else
+						fallback()
+					end
+				end, {
+					"i",
+					"s",
+				}),
+			}
 			return M
 		end,
 	},
@@ -125,6 +165,40 @@ local plugins = {
 			require("surround-ui").setup({
 				root_key = "S",
 			})
+		end,
+	},
+	{
+		"NeogitOrg/neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim", -- required
+			"sindrets/diffview.nvim", -- optional - Diff integration
+			"nvim-telescope/telescope.nvim",
+		},
+		keys = {
+			{ "<leader>G", ":Neogit<CR>", desc = "Neogit" },
+		},
+		opts = {
+			integrations = {
+				diffview = true,
+			},
+		},
+	},
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("custom.configs.whichkey")
+		end,
+	},
+	{
+		"crispgm/nvim-go",
+		event = "VeryLazy",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"neovim/nvim-lspconfig",
+		},
+		config = function()
+			require("custom.configs.go")
 		end,
 	},
 }

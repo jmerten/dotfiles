@@ -32,6 +32,42 @@ M.telescope = {
 
 	n = {
 		["<leader>fu"] = { "<cmd>Telescope undo<CR>", "Undo history" },
+		["gd"] = {
+			function()
+				require("telescope.builtin").lsp_definitions()
+			end,
+			"Goto Definition",
+		},
+		["gi"] = {
+			function()
+				require("telescope.builtin").lsp_implementations()
+			end,
+			"Goto Implementations",
+		},
+		["gr"] = {
+			function()
+				require("telescope.builtin").lsp_references()
+			end,
+			"Goto References",
+		},
+		["gt"] = {
+			function()
+				require("telescope.builtin").lsp_type_definitions()
+			end,
+			"Goto Type Definitions",
+		},
+		["<leader>ds"] = {
+			function()
+				require("telescope.builtin").lsp_document_symbols()
+			end,
+			"Document Symbols",
+		},
+		["<leader>ws"] = {
+			function()
+				require("telescope.builtin").lsp_dynamic_workspace_symbols()
+			end,
+			"Workspace Symbols",
+		},
 	},
 }
 
