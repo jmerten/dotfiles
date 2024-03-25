@@ -21,13 +21,32 @@ lspconfig.rust_analyzer.setup({
 	capabilities = capabilities,
 	filetypes = { "rust" },
 	root_dir = util.root_pattern("Cargo.toml"),
-	-- settings = {
-	-- 	["rust_analyzer"] = {
-	-- 		cargo = {
-	-- 			allFeatures = true,
-	-- 		},
-	-- 	},
-	-- },
+	settings = {
+		["rust_analyzer"] = {
+			cargo = {
+				allFeatures = true,
+			},
+		},
+	},
+})
+
+lspconfig.pyright.setup({
+	capabilities = capabilities,
+	settings = {
+		python = {
+			checkOnType = false,
+			diagnostics = true,
+			inlayHints = true,
+			smartCompletion = true,
+			analysis = {
+				autoImportCompletions = true,
+				typeCheckingMode = "off",
+				autoSearchPaths = true,
+				useLibraryCodeForTypes = true,
+				diagnosticMode = "workspace", -- "openFilesOnly",
+			},
+		},
+	},
 })
 
 lspconfig.gopls.setup({
@@ -38,8 +57,7 @@ lspconfig.gopls.setup({
 	root_dir = util.root_pattern("go.work", "go.mod", ".git"),
 	settings = {
 		gopls = {
-			completeUnimported = true,
-			usePlaceholders = true,
+			-- completeUnimported = true,
 			staticcheck = true,
 			analyses = {
 				shadow = true,

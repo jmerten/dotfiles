@@ -1,12 +1,12 @@
 local options = {
-	lsp_fallback = true,
 	formatters_by_ft = {
 		lua = { "stylua" },
 		go = {
 			-- "gofumpt",
-			"goimports-reviser",
+			"goimports_reviser", -- needs to match formatter below
 			"golines",
 		},
+		python = { "isort", "black" },
 		rust = { "rustfmt" },
 		toml = { "taplo" },
 		sh = { "shfmt" },
@@ -18,8 +18,11 @@ local options = {
 				"-rm-unused",
 				"-set-alias",
 				"-format",
-				-- "-company-prefixes 'some.url'", -- if needed
+				"-company-prefixes", -- if needed
+				"git.soma.salesforce.com", -- comma separated list of urls
+				"$FILENAME",
 			},
+			stdin = false, -- make sure file is passed as last arg
 			cwd = require("conform.util").root_file({ "go.mod" }),
 		},
 		rustfmt = {

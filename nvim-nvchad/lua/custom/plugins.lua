@@ -109,6 +109,16 @@ local plugins = {
 	},
 	{
 		"hrsh7th/nvim-cmp",
+		dependencies = {
+			{
+				"ray-x/lsp_signature.nvim",
+				event = "VeryLazy",
+				opts = {},
+				config = function(_, opts)
+					require("lsp_signature").setup(opts)
+				end,
+			},
+		},
 		opts = function()
 			local M = require("plugins.configs.cmp")
 			local cmp = require("cmp")
@@ -192,10 +202,19 @@ local plugins = {
 	},
 	{
 		"crispgm/nvim-go",
-		event = "VeryLazy",
+		event = { "CmdlineEnter" },
+		ft = { "go", "gomod" },
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"neovim/nvim-lspconfig",
+			{
+				"rafaelsq/nvim-goc.lua",
+				event = { "CmdlineEnter" },
+				ft = { "go" },
+				config = function()
+					require("custom.configs.nvimgoc")
+				end,
+			},
 		},
 		config = function()
 			require("custom.configs.go")

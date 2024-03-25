@@ -33,11 +33,14 @@ M.mason = {
 }
 
 M.nvimtree = {
+	filters = {
+		git_ignored = false,
+	},
 	git = {
 		enable = true,
 	},
 	renderer = {
-		highlight_git = true,
+		highlight_git = "all",
 		icons = {
 			show = {
 				git = true,
