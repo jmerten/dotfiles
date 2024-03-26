@@ -18,8 +18,8 @@ local options = {
 				"-rm-unused",
 				"-set-alias",
 				"-format",
-				"-company-prefixes", -- if needed
-				"git.soma.salesforce.com", -- comma separated list of urls
+				-- "-company-prefixes", -- if needed
+				-- "test.com", -- comma separated list of urls
 				"$FILENAME",
 			},
 			stdin = false, -- make sure file is passed as last arg
