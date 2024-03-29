@@ -23,7 +23,7 @@ return {
 				-- python = { "isort", "black" },
 				rust = { "rustfmt" },
 				toml = { "taplo" },
-				-- sh = { "shfmt" },
+				sh = { "shfmt" },
 			},
 			formatters = {
 				goimports_reviser = {
@@ -42,7 +42,7 @@ return {
 				golines = {
 					command = "golines",
 					args = {
-						"--base-formatter=golines-reviser",
+						"--chain-split-dots",
 						"--shorten-comments",
 						"--ignore-generated",
 						"-m",
