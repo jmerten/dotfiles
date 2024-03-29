@@ -52,6 +52,8 @@ return {
 				"-v",
 			},
 			test_popup_auto_leave = true,
+			test_popup_width = 200,
+			test_popup_height = 100,
 		},
 		keys = {
 			{ "<leader>gtf", ":GoTestFile<CR>", desc = "Run all tests in file" },
