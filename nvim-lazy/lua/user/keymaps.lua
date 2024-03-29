@@ -47,7 +47,7 @@ keymap.set("n", "gh", "g0", { desc = "Goto beginning of line" })
 keymap.set("n", "gl", "g$", { desc = "Goto end of line" })
 
 -- general
-keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "View project directory" })
+-- keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "View project directory" })
 keymap.set("n", "x", '"_x')
 keymap.set("n", "U", "<C-r>", { desc = "Redo action" })
 
