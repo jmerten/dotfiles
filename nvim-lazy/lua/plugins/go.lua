@@ -19,15 +19,15 @@ return {
 					vim.keymap.set(
 						"n",
 						"<leader>gcf",
-						require("nvim-goc").Coverage,
-						{ silent = true, desc = "Run coverage for file" }
+						require("nvim-goc").CoverageFunc,
+						{ silent = true, desc = "Run coverage for function" }
 					)
 
 					vim.keymap.set(
 						"n",
 						"<leader>gcF",
-						require("nvim-goc").CoverageFunc,
-						{ silent = true, desc = "Run coverage for function" }
+						require("nvim-goc").Coverage,
+						{ silent = true, desc = "Run coverage for file" }
 					)
 
 					vim.keymap.set(
@@ -41,7 +41,7 @@ return {
 		},
 		opts = {
 			notify = true,
-			formatter = "goimports-reviser",
+			formatter = "goimports",
 			auto_format = false,
 			auto_lint = false,
 			lint_prompt_style = "vt",
@@ -56,8 +56,8 @@ return {
 			test_popup_height = 100,
 		},
 		keys = {
-			{ "<leader>gtf", ":GoTestFile<CR>", desc = "Run all tests in file" },
-			{ "<leader>gtF", ":GoTestFunc<CR>", desc = "Run test for function" },
+			{ "<leader>gtf", ":GoTestFunc<CR>", desc = "Run test for function" },
+			{ "<leader>gtF", ":GoTestFile<CR>", desc = "Run all tests in file" },
 		},
 		config = function(_, opts)
 			require("go").setup(opts)

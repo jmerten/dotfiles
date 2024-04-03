@@ -84,9 +84,6 @@ return {
 				diffview = true,
 			},
 		},
-		setup = function(_, opts)
-			require("neogit").setup(opts)
-		end,
 	},
 	-- {
 	--     "tpope/vim-fugitive",

@@ -16,11 +16,12 @@ return {
 			formatters_by_ft = {
 				lua = { "stylua" },
 				go = {
-					-- "gofumpt",
-					"goimports-reviser",
+					-- "goimports",
+					"goimports_reviser",
 					"golines",
+					-- "gofumpt"  -- goimports-reviser should handle this, add if needed
 				},
-				-- python = { "isort", "black" },
+				python = { "isort", "black" },
 				rust = { "rustfmt" },
 				toml = { "taplo" },
 				sh = { "shfmt" },
@@ -30,13 +31,14 @@ return {
 					command = "goimports-reviser",
 					args = {
 						"-rm-unused",
-						"-set-alias",
+						-- "-set-alias",
 						"-format",
-						-- "-company-prefixes",
-						-- "test.com", -- if needed
+						"-company-prefixes",
+						"git.soma", -- if needed
 						"$FILENAME",
 					},
-					stdin = false, -- make sure file is passed as last arg
+					stdin = false,
+					-- comment out this line to install conform, then uncomment once installed
 					cwd = require("conform.util").root_file({ "go.mod" }),
 				},
 				golines = {
@@ -44,9 +46,8 @@ return {
 					args = {
 						"--chain-split-dots",
 						"--shorten-comments",
-						"--ignore-generated",
 						"-m",
-						"150",
+						"100",
 					},
 					cwd = require("conform.util").root_file({ "go.mod" }),
 				},
