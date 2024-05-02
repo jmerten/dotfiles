@@ -53,12 +53,6 @@ return {
 		end
 
 		-- Global mappings
-		-- vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts, { desc = "LSP Hover" })
-		-- vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts, {desc = "LSP Open Float"})
-		-- vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts, { desc = "LSP Code Actions"})
-		-- vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts,{desc = "LSP References"})
-		-- vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts,{desc = "LSP Rename Symbol"})
-		-- vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts,{desc = "LSP Signature Help"})
 		vim.keymap.set("n", "]d", function()
 			vim.diagnostic.goto_next()
 		end, opts, { desc = "LSP Goto next diagnostic" })
@@ -84,9 +78,6 @@ return {
 				vim.keymap.set("n", "K", vim.lsp.buf.hover, opts, { desc = "LSP Hover" })
 				-- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts, { desc = "LSP Goto definition" })
 				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts, { desc = "LSP Goto declaration" })
-				-- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts, { desc = "LSP Goto implementation" })
-				-- vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts, { desc = "LSP Goto references" })
-				-- vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, opts, { desc = "LSP Goto type definition" })
 				vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts, { desc = "LSP Rename" })
 				vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts, { desc = "LSP Code action" })
 				vim.keymap.set("n", "<C-h>", vim.lsp.buf.signature_help, opts, { desc = "LSP Toggle signature help" })
@@ -147,24 +138,7 @@ return {
 		})
 
 		lspconfig.gopls.setup({
-			on_attach = function(_, bufnr)
-				-- Testing
-				-- vim.keymap.set("n", "<leader>tf", ":GoTestFunc -v<CR>",
-				--     { buffer = bufnr, remap = false, desc = "Test selected function" })
-				-- vim.keymap.set("n", "<leader>tF", ":GoTestFile -v<CR>",
-				--     { buffer = bufnr, remap = false, desc = "Test file" })
-				-- vim.keymap.set("n", "<leader>tc", ":GoCoverage -p<CR>",
-				--     { buffer = bufnr, remap = false, desc = "Test package with coverage" })
-
-				-- Debugging
-				-- vim.keymap.set("n", "<leader>db", ":GoBreakToggle<CR>",
-				--     { buffer = bufnr, remap = false, desc = "Debug toggle breakpoint" })
-				-- vim.keymap.set("n", "<leader>ds", ":GoDebug<CR>", { buffer = bufnr, remap = false, desc = "Debug start" })
-				-- vim.keymap.set("n", "<leader>dS", ":GoDebug -s<CR>",
-				--     { buffer = bufnr, remap = false, desc = "Debug stop" })
-				-- vim.keymap.set("n", "<leader>dc", ":GoDbgContinue<CR>",
-				--     { buffer = bufnr, remap = false, desc = "Debug continue" })
-			end,
+			on_attach = function(_, bufnr) end,
 			capabilities = capabilities,
 
 			settings = {
@@ -185,7 +159,7 @@ return {
 						rangeVariableTypes = true,
 					},
 					staticcheck = true,
-					gofumpt = false,
+					gofumpt = true,
 				},
 			},
 		})

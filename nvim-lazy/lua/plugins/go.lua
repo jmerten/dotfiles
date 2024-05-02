@@ -1,7 +1,7 @@
 return {
 	{
 		"crispgm/nvim-go",
-		event = { "CmdlineEnter" },
+		event = "CmdLineEnter",
 		ft = { "go", "gomod" },
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -10,26 +10,22 @@ return {
 				"rafaelsq/nvim-goc.lua",
 				event = { "CmdlineEnter" },
 				ft = { "go" },
-				opts = {
-					verticalSplit = false,
-				},
-				config = function(_, opts)
-					require("nvim-goc").setup(opts)
+				config = function()
+					vim.opt.switchbuf = "useopen"
+					require("nvim-goc").setup({ verticalSplit = false })
 
 					vim.keymap.set(
 						"n",
 						"<leader>gcf",
-						require("nvim-goc").CoverageFunc,
-						{ silent = true, desc = "Run coverage for function" }
-					)
-
-					vim.keymap.set(
-						"n",
-						"<leader>gcF",
 						require("nvim-goc").Coverage,
 						{ silent = true, desc = "Run coverage for file" }
 					)
-
+					vim.keymap.set(
+						"n",
+						"<leader>gcF",
+						require("nvim-goc").CoverageFunc,
+						{ silent = true, desc = "Run coverage for function" }
+					)
 					vim.keymap.set(
 						"n",
 						"<leader>gct",
@@ -39,9 +35,13 @@ return {
 				end,
 			},
 		},
+		keys = {
+			{ "<leader>gtf", ":GoTestFunc<CR>", desc = "[Go] test selected function" },
+			{ "<leader>gtF", ":GoTestFile<CR>", desc = "[Go] test selected function" },
+		},
 		opts = {
-			notify = true,
-			formatter = "goimports",
+			notify = false,
+			formatter = "lsp",
 			auto_format = false,
 			auto_lint = false,
 			lint_prompt_style = "vt",
@@ -54,10 +54,6 @@ return {
 			test_popup_auto_leave = true,
 			test_popup_width = 200,
 			test_popup_height = 100,
-		},
-		keys = {
-			{ "<leader>gtf", ":GoTestFunc<CR>", desc = "Run test for function" },
-			{ "<leader>gtF", ":GoTestFile<CR>", desc = "Run all tests in file" },
 		},
 		config = function(_, opts)
 			require("go").setup(opts)

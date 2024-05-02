@@ -1,38 +1,76 @@
 return {
-    -- {
-    --     "morhetz/gruvbox",
-    --     config = function()
-    --         vim.cmd "colorscheme gruvbox"
-    --     end,
-    -- },
-    {
-        "sainnhe/gruvbox-material",
-        config = function()
-            vim.cmd "colorscheme gruvbox-material"
-        end,
-    },
-    {
-        "nvim-tree/nvim-web-devicons",
-        event = "VeryLazy",
-        config = function()
-            require("nvim-web-devicons").setup({
-                default = true
-            })
-        end,
-    },
-    {
-        "kylechui/nvim-surround",
-        version = "*",
-        event = "VeryLazy",
-        config = function()
-            require("nvim-surround").setup({
-                -- Add config here or leave blank to use defaults
-            })
-        end,
-    },
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        main = "ibl",
-        opts = {},
-    }
+	-- {
+	-- 	"morhetz/gruvbox",
+	-- 	config = function()
+	-- 		vim.cmd("colorscheme gruvbox")
+	-- 	end,
+	-- },
+	{
+		"NvChad/nvim-colorizer.lua",
+		event = "VeryLazy",
+		config = function()
+			require("colorizer").setup({
+				filetypes = { "lua" },
+			})
+		end,
+	},
+	{
+		"echasnovski/mini.bufremove",
+		event = "VeryLazy",
+		version = "*",
+		keys = {
+			{
+				"<leader>x",
+				function()
+					require("mini.bufremove").delete(0, false)
+				end,
+				desc = "Close current buffer",
+			},
+			{
+				"<leader>X",
+				function()
+					require("mini.bufremove").delete(0, true)
+				end,
+				desc = "Force close current buffer",
+			},
+		},
+		config = function()
+			require("mini.bufremove").setup()
+		end,
+	},
+	{
+		"sainnhe/gruvbox-material",
+		config = function()
+			vim.cmd("colorscheme gruvbox-material")
+		end,
+	},
+	{
+		"kylechui/nvim-surround",
+		version = "*",
+		event = "VeryLazy",
+		config = function()
+			require("nvim-surround").setup({
+				-- Add config here or leave blank to use defaults
+			})
+		end,
+	},
+	{
+		"roobert/surround-ui.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			"kylechui/nvim-surround",
+			"folke/which-key.nvim",
+		},
+		config = function()
+			require("surround-ui").setup({
+				root_key = "S",
+			})
+		end,
+	},
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		event = "VeryLazy",
+		main = "ibl",
+		opts = {},
+	},
 }

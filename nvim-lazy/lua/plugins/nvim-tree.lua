@@ -14,14 +14,19 @@ local options = {
 			"^.git$",
 		},
 	},
-	disable_netrw = true,
-	hijack_netrw = true,
 	hijack_cursor = true,
-	hijack_unnamed_buffer_when_opening = false,
 	sync_root_with_cwd = true,
 	update_focused_file = {
 		enable = true,
-		update_root = false,
+		update_root = true,
+	},
+	filesystem_watchers = {
+		enable = true,
+	},
+	actions = {
+		open_file = {
+			resize_window = true,
+		},
 	},
 	view = {
 		adaptive_size = false,
@@ -32,14 +37,6 @@ local options = {
 	git = {
 		enable = true,
 		ignore = true,
-	},
-	filesystem_watchers = {
-		enable = true,
-	},
-	actions = {
-		open_file = {
-			resize_window = true,
-		},
 	},
 	renderer = {
 		root_folder_label = false,
@@ -55,18 +52,18 @@ local options = {
 		},
 	},
 }
-
 return {
 	"nvim-tree/nvim-tree.lua",
 	version = "*",
 	lazy = false,
+	event = "VeryLazy",
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 	},
 	opts = options,
 	keys = {
-		{ "<leader>e", ":NvimTreeFocus<CR>", desc = "Focus NvimTree" },
-		{ "<c-n>", ":NvimTreeToggle<CR>", desc = "Toggle NvimTree" },
+		{ "<leader>e", ":NvimTreeFocus<CR>", desc = "Nvim tree focus" },
+		{ "<c-n>", ":NvimTreeToggle<CR>", desc = "Nvim tree toggle" },
 	},
 	config = function(_, opts)
 		require("nvim-tree").setup(opts)
