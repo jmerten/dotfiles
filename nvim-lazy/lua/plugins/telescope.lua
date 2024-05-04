@@ -1,3 +1,11 @@
+-- Clone the default Telescope configuration
+local vimgrep_arguments = { unpack(require("telescope.config").values.vimgrep_arguments) }
+
+-- I want to search in hidden/dot files.
+table.insert(vimgrep_arguments, "--hidden")
+table.insert(vimgrep_arguments, "--glob")
+table.insert(vimgrep_arguments, "!**/.git/*")
+
 return {
 	"nvim-telescope/telescope.nvim",
 	event = "VeryLazy",
@@ -10,16 +18,7 @@ return {
 	cmd = "Telescope",
 	opts = {
 		defaults = {
-			vimgrep_arguments = {
-				"rg",
-				"-L",
-				"--color=never",
-				"--no-heading",
-				"--with-filename",
-				"--line-number",
-				"--column",
-				"--smart-case",
-			},
+			vimgrep_arguments = vimgrep_arguments,
 			prompt_prefix = "   ",
 			selection_caret = "  ",
 			entry_prefix = "  ",
@@ -47,6 +46,19 @@ return {
 			borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 			color_devicons = true,
 			set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+		},
+		pickers = {
+			find_files = {
+				find_command = {
+					"rg",
+					"--files",
+					"--sort",
+					"path",
+					"--hidden",
+					"--glob",
+					"!**/.git/*",
+				},
+			},
 		},
 		extensions = {
 			undo = {
