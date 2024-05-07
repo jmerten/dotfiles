@@ -52,7 +52,6 @@ return {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
-            "ray-x/lsp_signature.nvim",
         },
         "onsails/lspkind.nvim",
     },
