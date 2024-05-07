@@ -55,19 +55,6 @@ return {
 		end,
 	},
 	{
-		"roobert/surround-ui.nvim",
-		event = "VeryLazy",
-		dependencies = {
-			"kylechui/nvim-surround",
-			"folke/which-key.nvim",
-		},
-		config = function()
-			require("surround-ui").setup({
-				root_key = "S",
-			})
-		end,
-	},
-	{
 		"lukas-reineke/indent-blankline.nvim",
 		event = "VeryLazy",
 		main = "ibl",
