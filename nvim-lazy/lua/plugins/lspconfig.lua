@@ -121,9 +121,9 @@ return {
 			capabilities = capabilities,
 			settings = {
 				gopls = {
-					--[[ buildFlags = {
-                        "-tags=",
-                    }, ]]
+					buildFlags = {
+						"-tags=integration",
+					},
 					analyses = {
 						shadow = true,
 						unusedparams = true,
@@ -139,8 +139,9 @@ return {
 						parameterNames = true,
 						rangeVariableTypes = true,
 					},
+					usePlaceholders = true,
 					staticcheck = true,
-					gofumpt = true,
+					-- gofumpt = true,
 				},
 			},
 		})

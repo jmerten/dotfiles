@@ -16,13 +16,13 @@ return {
 
 					vim.keymap.set(
 						"n",
-						"<leader>gcf",
+						"<leader>gcF",
 						require("nvim-goc").Coverage,
 						{ silent = true, desc = "Run coverage for file" }
 					)
 					vim.keymap.set(
 						"n",
-						"<leader>gcF",
+						"<leader>gcf",
 						require("nvim-goc").CoverageFunc,
 						{ silent = true, desc = "Run coverage for function" }
 					)
@@ -36,11 +36,11 @@ return {
 			},
 		},
 		keys = {
-			{ "<leader>gtf", ":GoTestFunc<CR>", desc = "[Go] test selected function" },
-			{ "<leader>gtF", ":GoTestFile<CR>", desc = "[Go] test selected function" },
+			{ "<leader>gtf", ":GoTestFunc<CR>", desc = "[Go] Test selected function" },
+			{ "<leader>gtF", ":GoTestFile<CR>", desc = "[Go] Test file" },
 		},
 		opts = {
-			notify = false,
+			notify = true,
 			formatter = "lsp",
 			auto_format = false,
 			auto_lint = false,

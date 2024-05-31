@@ -111,7 +111,7 @@
     },
     "test function": {
         "prefix": "tf",
-        "body": "func Test$1(t *testing.T) {\n\t$0\n}",
+        "body": "func Test$1(t *testing.T) {\n\tt.Run(\"$2\", func(t *testing.T) {\n\t\t$3\n\t})\n}",
         "description": "Snippet for Test function"
     },
     "benchmark function": {
