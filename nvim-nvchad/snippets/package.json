@@ -1,17 +1,14 @@
 {
     "name": "custom-snippets",
+    "version": "1.0.0",
     "contributes": {
         "snippets": [
             {
-                "language": [
-                    "go"
-                ],
+                "language": "go",
                 "path":"./go.json"
             },
             {
-                "language": [
-                    "rust"
-                ],
+                "language": "rust",
                 "path":"./rust.json"
             }
         ]
