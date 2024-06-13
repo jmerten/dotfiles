@@ -9,12 +9,6 @@ return {
 
 	-- These are some examples, uncomment them if you want to see them work!
 	{
-		"sainnhe/gruvbox-material",
-		config = function()
-			vim.cmd("colorscheme gruvbox-material")
-		end,
-	},
-	{
 		"lewis6991/gitsigns.nvim",
 		opts = require("configs.gitsigns"),
 	},

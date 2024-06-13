@@ -3,6 +3,7 @@ return {
 	lazy = false,
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
+		"nvim-tree/nvim-tree.lua",
 	},
 	event = "VimEnter",
 	enabled = true,
