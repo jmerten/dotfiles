@@ -1,8 +1,20 @@
-local user = {}
-function user.on_attach()
+local function check_triggeredChars(triggerChars)
+	local cur_line = vim.api.nvim_get_current_line()
+	local pos = vim.api.nvim_win_get_cursor(0)[2]
+
+	cur_line = cur_line:gsub("%s+$", "") -- rm trailing spaces
+
+	for _, char in ipairs(triggerChars) do
+		if cur_line:sub(pos, pos) == char then
+			return true
+		end
+	end
+end
+
+local function on_attach(client, bufnr)
 	-- Buffer local mappings.
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
-	local opts = { buffer = true }
+	local opts = { buffer = bufnr }
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, opts, { desc = "LSP Hover" })
 	-- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts, { desc = "LSP Goto definition" })
 	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts, { desc = "LSP Goto declaration" })
@@ -20,6 +32,23 @@ function user.on_attach()
 	vim.keymap.set("n", "<leader>wl", function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 	end, opts, { desc = "LSP List workspace folders" })
+
+	if client.server_capabilities.signatureHelpProvider then
+		local group = vim.api.nvim_create_augroup("LspSignature", { clear = false })
+		vim.api.nvim_clear_autocmds({ group = group, buffer = bufnr })
+
+		local triggerChars = client.server_capabilities.signatureHelpProvider.triggerCharacters
+
+		vim.api.nvim_create_autocmd("TextChangedI", {
+			group = group,
+			buffer = bufnr,
+			callback = function()
+				if check_triggeredChars(triggerChars) then
+					vim.lsp.buf.signature_help()
+				end
+			end,
+		})
+	end
 end
 
 return {
@@ -27,7 +56,7 @@ return {
 	dependencies = {
 		{ "hrsh7th/cmp-nvim-lsp" },
 	},
-	event = { "BufReadPre", "BufNewFile" },
+	event = "User FilePost",
 
 	init = function()
 		local sign = function(opts)
@@ -55,10 +84,6 @@ return {
 			},
 		})
 
-		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-		vim.lsp.handlers["textDocument/signatureHelp"] =
-			vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
-
 		-- Global mappings
 		vim.keymap.set("n", "]d", function()
 			vim.diagnostic.goto_next()
@@ -70,19 +95,31 @@ return {
 
 	config = function()
 		local lspconfig = require("lspconfig")
-		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+		local function on_init(client, _)
+			if client.supports_method("textDocument/semanticTokens") then
+				client.server_capabilities.semanticTokensProvider = nil
+			end
+		end
+
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities.textDocument.completion.completionItem = {
 			documentationFormat = { "markdown", "plaintext" },
+			snippetSupport = true,
+			preselectSupport = true,
+			insertReplaceSupport = true,
+			labelDetailsSupport = true,
+			deprecatedSupport = true,
+			commitCharactersSupport = true,
+			tagSupport = { valueSet = { 1 } },
+			resolveSupport = {
+				properties = {
+					"documentation",
+					"detail",
+					"additionalTextEdits",
+				},
+			},
 		}
-
-		local group = vim.api.nvim_create_augroup("lsp_cmds", { clear = true })
-
-		vim.api.nvim_create_autocmd("LspAttach", {
-			group = group,
-			desc = "Lsp actions",
-			callback = user.on_attach,
-		})
 
 		local servers = {
 			"rust_analyzer",
@@ -94,11 +131,15 @@ return {
 
 		for _, lsp in ipairs(servers) do
 			lspconfig[lsp].setup({
+				on_attach = on_attach,
+				on_init = on_init,
 				capabilities = capabilities,
 			})
 		end
 
 		lspconfig.pyright.setup({
+			on_attach = on_attach,
+			on_init = on_init,
 			capabilities = capabilities,
 			settings = {
 				python = {
@@ -118,6 +159,8 @@ return {
 		})
 
 		lspconfig.gopls.setup({
+			on_attach = on_attach,
+			on_init = on_init,
 			capabilities = capabilities,
 			settings = {
 				gopls = {
