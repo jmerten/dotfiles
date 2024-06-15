@@ -4,12 +4,6 @@ local vimdir = vim.fn.stdpath("config")
 api.nvim_set_keymap("", "<Space>", "<Nop>", { noremap = true, silent = true })
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
--- vim.g.vscode_snippets_path = {
--- 	-- vimdir .. "/snippets/go",
--- 	-- vimdir .. "/snippets/rust"
--- 	"/Users/jmerte/.config/nvim/snippets/go",
--- 	"/Users/jmerte/.config/nvim/snippets/rust",
--- }
 
 local keymap = vim.keymap
 
@@ -47,14 +41,13 @@ keymap.set("n", "gh", "g0", { desc = "Goto beginning of line" })
 keymap.set("n", "gl", "g$", { desc = "Goto end of line" })
 
 -- general
--- keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "View project directory" })
 keymap.set("n", "x", '"_x')
 keymap.set("n", "U", "<C-r>", { desc = "Redo action" })
 
 -- Buffer management
 keymap.set("n", "<leader>n", ":enew<CR>", { desc = "Create new buffer" }) -- create new buffer
-keymap.set("n", "gn", ":bnext<CR>", { desc = "Goto next buffer" }) -- go to next buffer
-keymap.set("n", "gp", ":bprev<CR>", { desc = "Goto previous buffer" }) -- go to previous buffer
+keymap.set("n", "gn", ":bnext<CR>", { desc = "Goto next buffer" })        -- go to next buffer
+keymap.set("n", "gp", ":bprev<CR>", { desc = "Goto previous buffer" })    -- go to previous buffer
 
 -- Window management
 keymap.set("n", "<C-w>v", "<C-w>v <C-w>l", { desc = "Split window vertically" })
