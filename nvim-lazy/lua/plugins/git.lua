@@ -69,34 +69,4 @@ return {
             end,
         },
     },
-    {
-        "NeogitOrg/neogit",
-        event = "VeryLazy",
-        dependencies = {
-            "nvim-lua/plenary.nvim",  -- required
-            "sindrets/diffview.nvim", -- optional - Diff integration
-            "nvim-telescope/telescope.nvim",
-        },
-        keys = {
-            { "<leader>G", ":Neogit<CR>", desc = "Neogit" },
-        },
-        opts = {
-            integrations = {
-                telescope = true,
-                diffview = true
-            },
-            filewatcher = {
-                interval = 5000,
-                enabled = true,
-            },
-            auto_refresh = false,
-            console_timeout = 5000,
-            commit_editor = {
-                staged_diff_split_kind = "auto"
-            }
-        },
-        setup = function(_, opts)
-            require("neogit").setup(opts)
-        end,
-    },
 }
