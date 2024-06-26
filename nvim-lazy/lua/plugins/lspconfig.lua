@@ -124,6 +124,7 @@ return {
         local servers = {
             "rust_analyzer",
             "lua_ls",
+            -- "bashls",
             -- "marksman",
             -- "dockerls",
             -- "terraformls",
