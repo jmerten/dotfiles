@@ -31,7 +31,11 @@ return {
 				height = 0.80,
 				preview_cutoff = 120,
 			},
-			file_ignore_patterns = { "^vendor/", "^target/", "^.git/" },
+			file_ignore_patterns = {
+				"^.git/", -- ignore .git directories
+				"^vendor/", -- ignore vendor folders
+				"^target/", -- ignore rust target directory
+			},
 			path_display = { "truncate" },
 			set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
 		},
@@ -44,6 +48,7 @@ return {
 				glob_pattern = {
 					"!^.git/*",
 					"!^vendor/*",
+					"!^target/*",
 				},
 				additional_args = {
 					"--hidden",
