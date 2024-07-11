@@ -156,10 +156,10 @@ return {
 				}),
 			},
 			sources = {
-				{ name = "nvim_lsp" },
 				{ name = "luasnip", keyword_legth = 2 },
-				{ name = "buffer", keyword_length = 3 },
+				{ name = "nvim_lsp" },
 				{ name = "nvim_lua" },
+				{ name = "buffer", keyword_length = 3 },
 				{ name = "path" },
 			},
 		})
