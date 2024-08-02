@@ -1,12 +1,21 @@
-theme = "github_dark"
+theme = "gruvbox_dark_hard"
 
 [editor]
 line-number = 'relative'
 mouse = false
-bufferline = "multiple"
+bufferline = "always"
 true-color = true
 scrolloff = 8
-color-modes = true
+popup-border = "all"
+completion-timeout = 100
+
+[editor.statusline]
+left = ["mode","version-control","file-modification-indicator"]
+center = ["file-absolute-path","read-only-indicator"]
+right = ["spinner", "diagnostics", "selections", "register", "position", "file-encoding"]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
 
 [editor.cursor-shape]
 insert = 'bar'
@@ -15,9 +24,11 @@ select = "underline"
 
 [editor.file-picker]
 hidden = false
+# git-ignore = false
 
 [editor.lsp]
 display-messages = true
+# display-inlay-hints = true
 
 [keys.normal]
 esc = ["collapse_selection","keep_primary_selection"]
@@ -26,15 +37,18 @@ N = ["search_prev","align_view_center"]
 # C-u = ["half_page_up","align_view_center"]
 # C-d = ["half_page_down","align_view_center"]
 
-[keys.insert]
-j = { k = "normal_mode" } # exit insert mode
-
 [keys.normal.space]
-x = ":bc" # close current buffer
-X = ":bc!" # force close current buffer
+n = ":new" # create new buffer
+x = ":bc" # close the current buffer
+X = ":bc!" # force close the current buffer
 
 [keys.normal.space.t]
-g = ":sh go test -v ./..."
+# running test files
+# g = ":pipe /Users/jmerten/.config/helix/scripts/gotest"
+# g = ":sh go test -v ./..."
+
+[keys.normal.space.i]
+d = ":pipe date +'%a %b %d'"
 
 [editor.indent-guides]
 render = true
