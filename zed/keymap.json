@@ -7,18 +7,17 @@
 // from the command palette.
 [
   {
-    "context": "Workspace",
+    "context": "Editor && (showing_code_actions || showing_completions)",
     "bindings": {
-      // "shift shift": "file_finder::Toggle"
-    }
-  },
-  {
-    "context": "Editor && showing_completions",
-    "bindings": {
-      // "j k": ["workspace::SendKeystrokes", "escape"]
       "tab": "editor::ContextMenuNext",
       "shift-tab": "editor::ContextMenuPrev",
       "escape": "editor::Cancel"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert && !menu",
+    "bindings": {
+      "j k": ["vim::SwitchMode", "Normal"]
     }
   }
 ]

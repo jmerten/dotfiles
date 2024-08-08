@@ -7,21 +7,14 @@
 // custom settings, run the `zed: Open Default Settings` command
 // from the command palette
 {
-  "telemetry": {
-    "metrics": false,
-    "diagnostics": false
-  },
+  "theme": "Ayu Dark",
   "ui_font_size": 14,
   "buffer_font_size": 12,
-  "theme": {
-    "mode": "system",
-    "light": "One Light",
-    "dark": "One Dark"
-  },
   "ensure_final_newline_on_save": false,
   "inlay_hints": {
     "enabled": true
   },
+  "preferred_line_length": 150,
 
   // LSP configs
   "lsp": {
@@ -54,6 +47,28 @@
       }
     }
   },
+
+  // Language configuration
+  "languages": {
+    "Go": {
+      "code_actions_on_format": {
+        "source.organizeImports": true
+      }
+    },
+    "YAML": {
+      "tab_size": 2
+    },
+    "JSON": {
+      "tab_size": 2
+    }
+  },
+
+  // General configurations
+  "telemetry": {
+    "metrics": false,
+    "diagnostics": false
+  },
+  "auto_update": false,
 
   // Disable assistant and copilot (don't use)
   "assistant": {
