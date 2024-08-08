@@ -1,0 +1,68 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run the `zed: Open Default Settings` command
+// from the command palette
+{
+  "telemetry": {
+    "metrics": false,
+    "diagnostics": false
+  },
+  "ui_font_size": 14,
+  "buffer_font_size": 12,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "One Dark"
+  },
+  "ensure_final_newline_on_save": false,
+  "inlay_hints": {
+    "enabled": true
+  },
+
+  // LSP configs
+  "lsp": {
+    "gopls": {
+      "initialization_options": {
+        "buildFlags": ["-tags=integration"],
+        "analyses": {
+          "shadow": true,
+          "unusedparams": true,
+          "useany": true,
+          "unusedvariables": true
+        },
+        "usePlaceholders": true,
+        "staticcheck": true
+      }
+    },
+    "pyright": {
+      "initialization_options": {
+        "checkOnType": false,
+        "diagnostics": true,
+        "inlayHints": true,
+        "smartCompletion": true,
+        "analysis": {
+          "autoImportCompletions": true,
+          "typeCheckingMode": "off",
+          "autoSearchPaths": true,
+          "useLibraryCodeForTypes": true,
+          "diagnosticMode": "workspace"
+        }
+      }
+    }
+  },
+
+  // Disable assistant and copilot (don't use)
+  "assistant": {
+    "enabled": false,
+    "button": false,
+    "version": "1"
+  },
+  "features": {
+    "copilot": false,
+    "inline_completion_provider": "none"
+  }
+}
