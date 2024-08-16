@@ -5,6 +5,7 @@ return {
 	-- 		vim.cmd("colorscheme gruvbox")
 	-- 	end,
 	-- },
+	"sindrets/diffview.nvim",
 	{
 		"NvChad/nvim-colorizer.lua",
 		event = "VeryLazy",

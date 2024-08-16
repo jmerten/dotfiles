@@ -9,6 +9,7 @@
   "cmp_luasnip": { "branch": "master", "commit": "05a9ab28b53f71d1aece421ef32fee2cb857a843" },
   "conform.nvim": { "branch": "master", "commit": "cd75be867f2331b22905f47d28c0c270a69466aa" },
   "crates.nvim": { "branch": "main", "commit": "5d2751f3d31c952663ade44669b6b63efa06e295" },
+  "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "friendly-snippets": { "branch": "main", "commit": "45a1b96e46efe5fce8af325d4bed45feb9d29d0f" },
   "gitsigns.nvim": { "branch": "main", "commit": "220446c8c86a280180d852efac60991eaf1a21d4" },
   "gruvbox-material": { "branch": "master", "commit": "767b5471b8145ec071426341988c7af563f078d1" },
