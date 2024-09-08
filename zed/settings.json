@@ -14,11 +14,30 @@
   "inlay_hints": {
     "enabled": true
   },
+  "auto_signature_help": false,
   "preferred_line_length": 150,
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.settings",
+    "**/vendor",
+    "**/node*"
+  ],
 
   // LSP configs
+  // Disable all LSPs by default to prevent Zed from downloading them
+  "enable_language_server": false,
   "lsp": {
     "gopls": {
+      "binary": {
+        "path": "/Users/jmerten/go/bin/gopls",
+        "arguments": ["-mode=stdio"]
+      },
       "initialization_options": {
         "buildFlags": ["-tags=integration"],
         "analyses": {
@@ -32,6 +51,7 @@
       }
     },
     "pyright": {
+      "binary": { "path": "/usr/local/bin/pyright" },
       "initialization_options": {
         "checkOnType": false,
         "diagnostics": true,
@@ -45,14 +65,38 @@
           "diagnosticMode": "workspace"
         }
       }
+    },
+    "rust-analyzer": {
+      "binary": { "path": "/Users/jmerten/.cargo/bin/rust-analyzer" }
     }
   },
 
   // Language configuration
   "languages": {
     "Go": {
-      "code_actions_on_format": {
-        "source.organizeImports": true
+      "enable_language_server": true,
+      "formatter": [
+        {
+          "external": {
+            "command": "goimports",
+            "arguments": ["-local", "git.soma"]
+          }
+        },
+        {
+          "external": {
+            "command": "golines",
+            "arguments": ["--base-formatter=goimports", "--shorten-comments", "--ignore-generated", "-m", "150"]
+          }
+        }
+      ]
+    },
+    "Rust": {
+      "enable_language_server": true,
+      "formatter": {
+        "external": {
+          "command": "rustfmt",
+          "arguments": ["--edition=2021"]
+        }
       }
     },
     "YAML": {
@@ -64,6 +108,7 @@
   },
 
   // General configurations
+  "server_url": "https://disable-zed-downloads.invalid",
   "telemetry": {
     "metrics": false,
     "diagnostics": false
@@ -74,10 +119,16 @@
   "assistant": {
     "enabled": false,
     "button": false,
-    "version": "1"
+    "version": "2"
   },
   "features": {
     "copilot": false,
     "inline_completion_provider": "none"
+  },
+  "collaboration_panel": {
+    "button": false
+  },
+  "chat_panel": {
+    "button": false
   }
 }
