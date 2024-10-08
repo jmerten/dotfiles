@@ -8,39 +8,39 @@ return {
 		vim.o.timeoutlen = 300
 	end,
 	opts = {
-		window = {
+		win = {
 			border = "single", -- none, single, double, shadow
 			position = "bottom", --bottom, top
 		},
 	},
-	config = function(_, conf)
-		require("which-key").setup(conf)
+	config = function()
+		local wk = require("which-key")
 
-		local opts = {
-			mode = "n", -- Normal mode
-			prefix = "<leader>",
-			buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-			silent = true, -- use `silent` when creating keymaps
-			noremap = true, -- use `noremap` when creating keymaps
-			nowait = false, -- use `nowait` when creating keymaps
-		}
-
-		local mappings = {
-			c = { name = "[C]ode", _ = "which_key_ignore" },
-			d = { name = "[D]ocument", _ = "which_key_ignore" },
-			f = { name = "[F]ind", _ = "which_key_ignore" },
-			g = { name = "[g]oto", _ = "which_key_ignore" },
-			G = { name = "[G]it", _ = "which_key_ignore" },
-			h = { name = "Git [H]unk", _ = "which_key_ignore" },
-			O = { name = "[O]cto", _ = "which_key_ignore" },
-			-- p = { name = "[P]roject", _ = 'which_key_ignore' },
-			r = { name = "[R]ename", _ = "which_key_ignore" },
-			s = { name = "[S]earch", _ = "which_key_ignore" },
-			t = { name = "[T]oggle", _ = "which_key_ignore" },
-			v = { name = "[V]iew", _ = "which_key_ignore" },
-			w = { name = "[W]orkspace", _ = "which_key_ignore" },
-		}
-
-		require("which-key").register(mappings, opts)
+		wk.add({
+			{ "<leader>G", group = "[G]it", nowait = false, remap = false },
+			{ "<leader>G_", hidden = true, nowait = false, remap = false },
+			{ "<leader>O", group = "[O]cto", nowait = false, remap = false },
+			{ "<leader>O_", hidden = true, nowait = false, remap = false },
+			{ "<leader>c", group = "[C]ode", nowait = false, remap = false },
+			{ "<leader>c_", hidden = true, nowait = false, remap = false },
+			{ "<leader>d", group = "[D]ocument", nowait = false, remap = false },
+			{ "<leader>d_", hidden = true, nowait = false, remap = false },
+			{ "<leader>f", group = "[F]ind", nowait = false, remap = false },
+			{ "<leader>f_", hidden = true, nowait = false, remap = false },
+			{ "<leader>g", group = "[g]oto", nowait = false, remap = false },
+			{ "<leader>g_", hidden = true, nowait = false, remap = false },
+			{ "<leader>h", group = "Git [H]unk", nowait = false, remap = false },
+			{ "<leader>h_", hidden = true, nowait = false, remap = false },
+			{ "<leader>r", group = "[R]ename", nowait = false, remap = false },
+			{ "<leader>r_", hidden = true, nowait = false, remap = false },
+			{ "<leader>s", group = "[S]earch", nowait = false, remap = false },
+			{ "<leader>s_", hidden = true, nowait = false, remap = false },
+			{ "<leader>t", group = "[T]oggle", nowait = false, remap = false },
+			{ "<leader>t_", hidden = true, nowait = false, remap = false },
+			{ "<leader>v", group = "[V]iew", nowait = false, remap = false },
+			{ "<leader>v_", hidden = true, nowait = false, remap = false },
+			{ "<leader>w", group = "[W]orkspace", nowait = false, remap = false },
+			{ "<leader>w_", hidden = true, nowait = false, remap = false },
+		})
 	end,
 }
