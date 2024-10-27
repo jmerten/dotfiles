@@ -15,33 +15,34 @@ return {
             -- Using this option may slow down your editor, and you may see some duplicate highlights.
             -- Instead of true it can also be a list of languages
             additional_vim_regex_highlighting = false,
+            use_languagetree = true,
         },
-        indent = {
-            enable = true,
-        },
+        indent = { enable = true },
+
         -- :help nvim-treesitter-textobjects-modules
-        textobjects = {
-            select = {
-                enable = true,
-                lookahead = true,
-                keymaps = {
-                    ["aa"] = "@parameter.outer",
-                    ["ia"] = "@parameter.inner",
-                    ["af"] = "@function.outer",
-                    ["if"] = "@function.inner",
-                    ["ac"] = "@class.outer",
-                    ["ic"] = "@class.inner",
-                },
-            },
-        },
-        matchup = {
-            enable = true,
-        },
+        -- textobjects = {
+        --     select = {
+        --         enable = true,
+        --         lookahead = true,
+        --         keymaps = {
+        --             ["aa"] = "@parameter.outer",
+        --             ["ia"] = "@parameter.inner",
+        --             ["af"] = "@function.outer",
+        --             ["if"] = "@function.inner",
+        --             ["ac"] = "@class.outer",
+        --             ["ic"] = "@class.inner",
+        --         },
+        --     },
+        -- },
+        -- matchup = {
+        --     enable = true,
+        -- },
         ensure_installed = {
             "lua",
+            "luadoc",
             "vim",
-            "regex",
             "vimdoc",
+            "regex",
             "bash",
             "json",
             "markdown",
