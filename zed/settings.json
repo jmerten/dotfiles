@@ -9,10 +9,15 @@
 {
   "theme": "Ayu Dark",
   "ui_font_size": 14,
-  "buffer_font_size": 12,
+  "buffer_font_size": 13,
   "ensure_final_newline_on_save": false,
   "inlay_hints": {
-    "enabled": true
+    "enabled": false
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": false
+    }
   },
   "auto_signature_help": false,
   "preferred_line_length": 150,
@@ -28,6 +33,9 @@
     "**/vendor",
     "**/node*"
   ],
+  
+  // Formatter settings so we don't use the node version
+  "formatter": "language_server",
 
   // LSP configs
   // Disable all LSPs by default to prevent Zed from downloading them
@@ -47,7 +55,8 @@
           "unusedvariables": true
         },
         "usePlaceholders": true,
-        "staticcheck": true
+        "staticcheck": true,
+        "directoryFilters": ["-node_modules"]
       }
     },
     "pyright": {
@@ -75,6 +84,7 @@
   "languages": {
     "Go": {
       "enable_language_server": true,
+      "format_on_save": "on",
       "formatter": [
         {
           "external": {
@@ -85,13 +95,20 @@
         {
           "external": {
             "command": "golines",
-            "arguments": ["--base-formatter=goimports", "--shorten-comments", "--ignore-generated", "-m", "150"]
+            "arguments": [
+              "--base-formatter=goimports", 
+              "--shorten-comments",
+              "--ignore-generated",
+              "-m",
+              "150"
+            ]
           }
         }
       ]
     },
     "Rust": {
       "enable_language_server": true,
+      "format_on_save": "on",
       "formatter": {
         "external": {
           "command": "rustfmt",
