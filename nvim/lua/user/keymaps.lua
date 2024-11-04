@@ -1,5 +1,4 @@
 local api = vim.api
-local vimdir = vim.fn.stdpath("config")
 
 api.nvim_set_keymap("", "<Space>", "<Nop>", { noremap = true, silent = true })
 vim.g.mapleader = " "
@@ -20,7 +19,7 @@ keymap.set("v", "<", "<gv", { desc = "Increase indent" })
 keymap.set("v", ">", ">gv", { desc = "Decrease indent" })
 
 -- Paste over currently selected text without yanking it
-keymap.set("v", "p", [["_dP]])
+-- keymap.set("v", "p", [["_dP]])
 
 -- Cancel search highlighting with ESC
 keymap.set("n", "<ESC>", ":nohlsearch<Bar>:echo<CR>", { desc = "Cancel search highlighting" })
@@ -35,8 +34,8 @@ keymap.set("n", "U", "<C-r>", { desc = "Redo action" })
 
 -- Buffer management
 keymap.set("n", "<leader>n", ":enew<CR>", { desc = "Create new buffer" }) -- create new buffer
-keymap.set("n", "gn", ":bnext<CR>", { desc = "Goto next buffer" }) -- go to next buffer
-keymap.set("n", "gp", ":bprev<CR>", { desc = "Goto previous buffer" }) -- go to previous buffer
+keymap.set("n", "gn", ":bnext<CR>", { desc = "Goto next buffer" })        -- go to next buffer
+keymap.set("n", "gp", ":bprev<CR>", { desc = "Goto previous buffer" })    -- go to previous buffer
 
 -- Window management
 keymap.set("n", "<C-w>v", "<C-w>v <C-w>l", { desc = "Split window vertically" })
