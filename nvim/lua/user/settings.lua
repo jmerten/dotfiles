@@ -30,3 +30,4 @@ opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 opt.undofile = true
 
 opt.scrolloff = 8
+
