@@ -4,6 +4,9 @@
 
 local keymap = vim.keymap
 
+-- general
+keymap.set("n", "U", "<C-r>", { desc = "Redo action" })
+
 -- Better escape using jk in insert and terminal mode
 keymap.set("i", "jk", "<ESC>")
 keymap.set("t", "jk", "<c-\\><C-n>")
@@ -11,7 +14,9 @@ keymap.set("t", "jk", "<c-\\><C-n>")
 -- buffers
 keymap.del("n", "[b")
 keymap.del("n", "]b")
-keymap.del("n", "<leader>bD")
 keymap.set("n", "gn", ":bnext<cr>", { desc = "Next Buffer" })
 keymap.set("n", "gp", ":bprev<CR>", { desc = "Goto previous buffer" })
-keymap.set("n", "<leader>x", LazyVim.ui.bufremove, { desc = "Delete buffer" })
+
+-- windows
+keymap.del("n", "<leader>-")
+keymap.del("n", "<leader>|")
