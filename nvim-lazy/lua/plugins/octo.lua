@@ -14,12 +14,4 @@ return {
     default_to_projects_v2 = true,
     picker = "telescope",
   }
-  -- config = function()
-  --   require("octo").setup({
-  --     enable_builtin = true,
-  --     default_to_projects_v2 = true,
-  --     picker = "telescope",
-  --   })
-  --   vim.cmd([[hi OctoEditable guibg=none]])
-  -- end,
 }

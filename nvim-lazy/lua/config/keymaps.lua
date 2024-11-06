@@ -21,7 +21,7 @@ keymap.set("n", "gp", ":bprev<CR>", { desc = "Goto previous buffer" })
 keymap.del("n", "<leader>-")
 keymap.del("n", "<leader>|")
 
--- git
+-- remove git keymaps
 keymap.del("n", "<leader>gg")
 keymap.del("n", "<leader>gG")
 keymap.del("n", "<leader>gb")
