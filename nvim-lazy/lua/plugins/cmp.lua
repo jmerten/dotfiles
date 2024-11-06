@@ -69,23 +69,17 @@ return {
             -- You could replace select_next_item() with confirm({ select = true }) to get VS Code autocompletion behavior
             cmp.select_next_item()
             -- cmp.confirm { select = true }
-          else
+          elseif vim.snippet.active({ direction = 1 }) then
             vim.schedule(function() vim.snippet.jump(1) end)
           end
-        end, {
-          "i",
-          "s",
-        }),
+        end, { "i", "s", }),
         ["<S-Tab>"] = cmp.mapping(function()
           if cmp.visible() then
             cmp.select_prev_item()
-          elseif require("luasnip").jumpable(-1) then
+          elseif vim.snippet.active({ direction = -1 }) then
             vim.schedule(function() vim.snippet.jump(-1) end)
           end
-        end, {
-          "i",
-          "s",
-        }),
+        end, { "i", "s", }),
       },
       sources = cmp.config.sources({
         { name = "nvim_lsp_signature_help" },

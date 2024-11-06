@@ -20,3 +20,15 @@ keymap.set("n", "gp", ":bprev<CR>", { desc = "Goto previous buffer" })
 -- windows
 keymap.del("n", "<leader>-")
 keymap.del("n", "<leader>|")
+
+-- git
+keymap.del("n", "<leader>gg")
+keymap.del("n", "<leader>gG")
+keymap.del("n", "<leader>gb")
+keymap.del("n", "<leader>gB")
+keymap.del("n", "<leader>gl")
+keymap.del("n", "<leader>gL")
+keymap.del("n", "<leader>ge")
+keymap.del("n", "<leader>gf")
+keymap.del("n", "<leader>gs")
+keymap.del("n", "<leader>gc")

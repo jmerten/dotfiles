@@ -1,10 +1,13 @@
 return {
-  -- {
-  --   "folke/todo-comments.nvim",
-  --   keys = {
-  --     { "<leader>ft", ":TodoTelescope<CR>", desc = "Find TODOs in project" },
-  --   },
-  -- },
+  {
+    "folke/which-key.nvim",
+    opts = {
+      spec = {
+        { "<leader>h", group = "hunks" },
+        { "<leader>t", group = "toggle" }
+      }
+    }
+  },
   {
     "lewis6991/gitsigns.nvim",
     opts = {
