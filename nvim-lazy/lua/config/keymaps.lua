@@ -6,6 +6,7 @@ local keymap = vim.keymap
 
 -- general
 keymap.set("n", "U", "<C-r>", { desc = "Redo action" })
+keymap.del({ "n", "v" }, "<leader>cf")
 
 -- Better escape using jk in insert and terminal mode
 keymap.set("i", "jk", "<ESC>")

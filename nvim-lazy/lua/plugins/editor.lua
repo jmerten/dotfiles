@@ -1,5 +1,14 @@
 return {
   {
+    "NvChad/nvim-colorizer.lua",
+    event = "VeryLazy",
+    config = function()
+      require("colorizer").setup({
+        filetypes = { "lua" },
+      })
+    end,
+  },
+  {
     "folke/which-key.nvim",
     opts = {
       spec = {

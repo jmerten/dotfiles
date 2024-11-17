@@ -1,10 +1,8 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = {
-      auto_install = true,
-      sync_install = false,
-      highlight = {
+    opts = function(_, opts)
+      table.insert(opts.highlight, {
         enable = true,
 
         -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
@@ -13,9 +11,8 @@ return {
         -- Instead of true it can also be a list of languages
         additional_vim_regex_highlighting = false,
         use_languagetree = true,
-      },
-      indent = { enable = true },
-      ensure_installed = {
+      })
+      table.insert(opts.ensure_installed, {
         "lua",
         "luadoc",
         "vim",
@@ -37,7 +34,7 @@ return {
         -- 'dockerfile',
         -- 'terraform',
         -- 'puppet',
-      },
-    },
-  },
+      })
+    end,
+  }
 }
