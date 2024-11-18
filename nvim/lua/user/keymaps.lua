@@ -1,8 +1,6 @@
 local api = vim.api
 
 api.nvim_set_keymap("", "<Space>", "<Nop>", { noremap = true, silent = true })
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
 local keymap = vim.keymap
 
@@ -46,8 +44,8 @@ keymap.set("n", "U", "<C-r>", { desc = "Redo action" })
 
 -- Buffer management
 keymap.set("n", "<leader>n", ":enew<CR>", { desc = "Create new buffer" }) -- create new buffer
-keymap.set("n", "gn", ":bnext<CR>", { desc = "Goto next buffer" }) -- go to next buffer
-keymap.set("n", "gp", ":bprev<CR>", { desc = "Goto previous buffer" }) -- go to previous buffer
+keymap.set("n", "gn", ":bnext<CR>", { desc = "Goto next buffer" })        -- go to next buffer
+keymap.set("n", "gp", ":bprev<CR>", { desc = "Goto previous buffer" })    -- go to previous buffer
 
 -- Window management
 keymap.set("n", "<C-w>v", "<C-w>v <C-w>l", { desc = "Split window vertically" })
