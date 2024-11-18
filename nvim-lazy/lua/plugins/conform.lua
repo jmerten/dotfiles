@@ -5,55 +5,47 @@ return {
     keys = function()
       return {} -- remove all configured keybinds
     end,
-    opts = function()
-      return {
-        default_format_opts = {
-          timeout_ms = 3000,
-          async = false,           -- not recommended to change
-          quiet = false,           -- not recommended to change
-          lsp_format = "fallback", -- not recommended to change
+    opts = function(_, opts)
+      opts.formatters_by_ft = {
+        lua = { "stylua" },
+        go = {
+          -- "gofumpt",
+          "goimports",
+          "golines",
         },
-        formatters_by_ft = {
-          lua = { "stylua" },
-          go = {
-            -- "gofumpt",
-            "goimports",
-            "golines",
+        -- python = { "isort", "black" },
+        rust = { "rustfmt" },
+        toml = { "taplo" },
+        -- sh = { "shfmt" },
+      }
+      opts.formatters = {
+        goimports = {
+          command = "goimports",
+          args = {
+            "-local",
+            "git.soma",   -- if needed
           },
-          -- python = { "isort", "black" },
-          rust = { "rustfmt" },
-          toml = { "taplo" },
-          -- sh = { "shfmt" },
+          cwd = require("conform.util").root_file({ "go.mod" }),
         },
-        formatters = {
-          goimports = {
-            command = "goimports",
-            args = {
-              "-local",
-              "git.soma", -- if needed
-            },
-            cwd = require("conform.util").root_file({ "go.mod" }),
+        golines = {
+          timeout_ms = 500,
+          command = "golines",
+          args = {
+            "--base-formatter=goimports",
+            "--shorten-comments",
+            "--ignore-generated",
+            "-m",
+            "150",
           },
-          golines = {
-            timeout_ms = 500,
-            command = "golines",
-            args = {
-              "--base-formatter=goimports",
-              "--shorten-comments",
-              "--ignore-generated",
-              "-m",
-              "150",
-            },
-            cwd = require("conform.util").root_file({ "go.mod" }),
+          cwd = require("conform.util").root_file({ "go.mod" }),
+        },
+        rustfmt = {
+          timeout_ms = 1000,
+          command = "rustfmt",
+          args = {
+            "--edition=2021",
           },
-          rustfmt = {
-            timeout_ms = 1000,
-            command = "rustfmt",
-            args = {
-              "--edition=2021",
-            },
-            cwd = require("conform.util").root_file({ "Cargo.toml" }),
-          },
+          cwd = require("conform.util").root_file({ "Cargo.toml" }),
         },
       }
     end,

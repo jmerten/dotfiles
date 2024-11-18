@@ -12,7 +12,7 @@ return {
         additional_vim_regex_highlighting = false,
         use_languagetree = true,
       })
-      table.insert(opts.ensure_installed, {
+      opts.ensure_installed = {
         "lua",
         "luadoc",
         "vim",
@@ -34,7 +34,7 @@ return {
         -- 'dockerfile',
         -- 'terraform',
         -- 'puppet',
-      })
+      }
     end,
   }
 }

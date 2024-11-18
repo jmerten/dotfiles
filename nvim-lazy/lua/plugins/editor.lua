@@ -1,5 +1,11 @@
 return {
   {
+    "lukas-reineke/indent-blankline.nvim",
+    opts = {
+      scope = { show_start = true, show_end = true }
+    },
+  },
+  {
     "NvChad/nvim-colorizer.lua",
     event = "VeryLazy",
     config = function()
