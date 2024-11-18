@@ -8,6 +8,10 @@ local keymap = vim.keymap
 keymap.set("n", "U", "<C-r>", { desc = "Redo action" })
 keymap.del({ "n", "v" }, "<leader>cf")
 
+-- Better line movement
+keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Page up and center" })
+keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Page down and center" })
+
 -- Better escape using jk in insert and terminal mode
 keymap.set("i", "jk", "<ESC>")
 keymap.set("t", "jk", "<c-\\><C-n>")
