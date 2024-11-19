@@ -22,7 +22,7 @@ return {
 					["<tab>"] = "toggle_node",
 				},
 			}
-			opts.filesystem = {
+			table.insert(opts.filesystem, {
 				filtered_items = {
 					visible = true,
 					hide_dotfiles = false,
@@ -32,7 +32,7 @@ return {
 						".git",
 					},
 				},
-			}
+			})
 		end,
 	},
 }
