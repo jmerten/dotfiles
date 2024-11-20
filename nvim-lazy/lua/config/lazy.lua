@@ -33,11 +33,12 @@ require("lazy").setup({
     keymaps = true,
     options = true,
   },
-  install = { colorscheme = { "tokyonight", "habamax" } },
+  -- install = { colorscheme = { "tokyonight", "habamax" } },
+  install = {},
   checker = {
     enabled = true, -- check for plugin updates periodically
     notify = false, -- notify on update
-  },              -- automatically check for plugin updates
+  },                -- automatically check for plugin updates
   performance = {
     rtp = {
       -- disable some rtp plugins

@@ -23,7 +23,7 @@ return {
           command = "goimports",
           args = {
             "-local",
-            "git.soma",   -- if needed
+            "git.soma", -- if needed
           },
           cwd = require("conform.util").root_file({ "go.mod" }),
         },
