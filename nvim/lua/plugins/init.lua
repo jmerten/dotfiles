@@ -16,6 +16,15 @@ return {
     },
 	},
 	{
+		"folke/todo-comments.nvim",
+		event = "VeryLazy",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		keys = {
+			{ "<leader>ft", ":TodoTelescope<CR>", desc = "Find TODOs in project" },
+		},
+		opts = {},
+	},
+	{
 		"sainnhe/gruvbox-material",
 		config = function()
 			vim.cmd("colorscheme gruvbox-material")
