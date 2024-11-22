@@ -1,15 +1,6 @@
 return {
 	"sindrets/diffview.nvim",
 	{
-		"NvChad/nvim-colorizer.lua",
-		event = "VeryLazy",
-		config = function()
-			require("colorizer").setup({
-				filetypes = { "lua" },
-			})
-		end,
-	},
-	{
 		"folke/flash.nvim",
 		event = "VeryLazy",
 		vscode = true,

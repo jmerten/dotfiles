@@ -28,10 +28,10 @@ return {
 						{
 							"diagnostics",
 							symbols = {
-								error = " ",
-								warn = " ",
-								info = " ",
-								hint = " ",
+								error = lazyUtil.icons.diagnostic.error .. " ",
+								warn = lazyUtil.icons.diagnostic.warn .. " ",
+								info = lazyUtil.icons.diagnostic.info .. " ",
+								hint = lazyUtil.icons.diagnostic.hint .. " ",
 							},
 						},
 						{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
@@ -47,9 +47,9 @@ return {
 						{
 							"diff",
 							symbols = {
-								added = " ",
-								modified = " ",
-								removed = " ",
+								added = lazyUtil.icons.git.added .. " ",
+								modified = lazyUtil.icons.git.modified .. " ",
+								removed = lazyUtil.icons.git.removed .. " ",
 							},
 							source = function()
 								local gitsigns = vim.b.gitsigns_status_dict
@@ -86,8 +86,8 @@ return {
 				numbers = "none",
 				diagnostics = "nvim_lsp",
 				diagnostics_indicator = function(_, _, diag)
-					local ret = (diag.error and " " .. diag.error .. " " or "")
-						.. (diag.warning and " " .. diag.warning or "")
+					local ret = (diag.error and lazyUtil.icons.diagnostic.error .. " " .. diag.error .. " " or "")
+						.. (diag.warning and lazyUtil.icons.diagnostic.warn .. " " .. diag.warning or "")
 					return vim.trim(ret)
 				end,
 				-- separator_style = "slant" or "padded_slant",

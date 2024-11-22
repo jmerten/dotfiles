@@ -1,5 +1,10 @@
 return {
 	"nvim-neo-tree/neo-tree.nvim",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"nvim-tree/nvim-web-devicons",
+		"MunifTanjim/nui.nvim",
+	},
 	cmd = "Neotree",
 	keys = {
 		{
@@ -57,6 +62,20 @@ return {
 				expander_collapsed = "",
 				expander_expanded = "",
 				expander_highlight = "NeoTreeExpander",
+			},
+			diagnostics = {
+				symbols = {
+					hint = lazyUtil.icons.diagnostic.hint,
+					info = lazyUtil.icons.diagnostic.info,
+					warn = lazyUtil.icons.diagnostic.warn,
+					error = lazyUtil.icons.diagnostic.error,
+				},
+				highlights = {
+					hint = "DiagnosticSignHint",
+					info = "DiagnosticSignInfo",
+					warn = "DiagnosticSignWarn",
+					error = "DiagnosticSignError",
+				},
 			},
 			git_status = {
 				symbols = {
