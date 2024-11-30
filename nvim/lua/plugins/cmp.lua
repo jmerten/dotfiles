@@ -8,7 +8,7 @@ return {
 			-- version = "v2.*",
 			-- build = "make install_jsregexp",
 			dependencies = "rafamadriz/friendly-snippets",
-			opts = { history = true, updateevents = "TextChanged,TextChangedI" },
+			opts = { history = true, update_events = "TextChanged,TextChangedI" },
 			config = function(_, opts)
 				require("luasnip").config.set_config(opts)
 
@@ -60,6 +60,16 @@ return {
 
 		-- See :help cmp-config
 		cmp.setup({
+			enabled = function()
+				-- disable completion in comments
+				local context = require("cmp.config.context")
+				-- keep command mode completion enabled when cursor is in a comment
+				if vim.api.nvim_get_mode().mode == "c" then
+					return true
+				else
+					return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
+				end
+			end,
 			completion = {
 				completeopt = "menu,menuone,noinsert,noselect",
 			},
@@ -98,8 +108,6 @@ return {
 			},
 
 			mapping = {
-				-- ["<C-p>"] = cmp.mapping.select_prev_item(),
-				-- ["<C-n>"] = cmp.mapping.select_next_item(),
 				["<C-d>"] = cmp.mapping.scroll_docs(-4),
 				["<C-u>"] = cmp.mapping.scroll_docs(4),
 				["<C-Space>"] = cmp.mapping.complete(),
@@ -123,10 +131,7 @@ return {
 					else
 						fallback()
 					end
-				end, {
-					"i",
-					"s",
-				}),
+				end, { "i", "s" }),
 				["<S-Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_prev_item()
@@ -135,10 +140,7 @@ return {
 					else
 						fallback()
 					end
-				end, {
-					"i",
-					"s",
-				}),
+				end, { "i", "s" }),
 			},
 			sources = {
 				{ name = "nvim_lsp_signature_help" },
