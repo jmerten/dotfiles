@@ -56,8 +56,6 @@ return {
 			}
 		end
 
-		-- vim.opt.completeopt = { "menu", "menuone", "noinsert", "noselect" }
-
 		-- See :help cmp-config
 		cmp.setup({
 			enabled = function()
