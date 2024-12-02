@@ -25,7 +25,7 @@ end
 
 return {
 	"neovim/nvim-lspconfig",
-	event = "User FilePost",
+	event = "VeryLazy",
 
 	init = function()
 		local sign = function(opts)
@@ -36,14 +36,25 @@ return {
 			})
 		end
 
-		sign({ name = "DiagnosticSignError", text = lazyUtil.icons.diagnostic.error })
-		sign({ name = "DiagnosticSignInfo", text = lazyUtil.icons.diagnostic.info })
-		sign({ name = "DiagnosticSignHint", text = lazyUtil.icons.diagnostic.hint })
-		sign({ name = "DiagnosticSignWarn", text = lazyUtil.icons.diagnostic.warn })
+		-- sign({ name = "DiagnosticSignError", text = lazyUtil.icons.diagnostic.error })
+		-- sign({ name = "DiagnosticSignInfo", text = lazyUtil.icons.diagnostic.info })
+		-- sign({ name = "DiagnosticSignHint", text = lazyUtil.icons.diagnostic.hint })
+		-- sign({ name = "DiagnosticSignWarn", text = lazyUtil.icons.diagnostic.warn })
 
 		vim.diagnostic.config({
-			virtual_text = false,
-			signs = true,
+			virtual_text = {
+				spacing = 4,
+				source = "if_many",
+				prefix = "●",
+			},
+			signs = {
+				text = {
+					[vim.diagnostic.severity.ERROR] = lazyUtil.icons.diagnostic.error,
+					[vim.diagnostic.severity.WARN] = lazyUtil.icons.diagnostic.warn,
+					[vim.diagnostic.severity.HINT] = lazyUtil.icons.diagnostic.hint,
+					[vim.diagnostic.severity.INFO] = lazyUtil.icons.diagnostic.info,
+				},
+			},
 			underline = true,
 			update_in_insert = false,
 			severity_sort = true,
@@ -52,14 +63,6 @@ return {
 				source = "always",
 			},
 		})
-
-		-- Global mappings
-		vim.keymap.set("n", "]d", function()
-			vim.diagnostic.goto_next()
-		end, { desc = "LSP Goto next diagnostic" })
-		vim.keymap.set("n", "[d", function()
-			vim.diagnostic.goto_prev()
-		end, { desc = "LSP Goto previous diagnostic" })
 	end,
 
 	config = function()

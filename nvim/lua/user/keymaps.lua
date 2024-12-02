@@ -28,8 +28,18 @@ keymap.set("i", "<C-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
 keymap.set("v", "<C-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
 keymap.set("v", "<C-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 
--- Paste over currently selected text without yanking it
--- keymap.set("v", "p", [["_dP]])
+-- Diagnostics
+keymap.set("n", "]d", function()
+	vim.diagnostic.goto_next()
+end, { desc = "LSP Goto next diagnostic" })
+keymap.set("n", "[d", function()
+	vim.diagnostic.goto_prev()
+end, { desc = "LSP Goto previous diagnostic" })
+
+-- General
+keymap.set("v", "p", [["_dP]])
+keymap.set("n", "x", '"_x')
+keymap.set("n", "U", "<C-r>", { desc = "Redo action" })
 
 -- Cancel search highlighting with ESC
 keymap.set("n", "<ESC>", ":nohlsearch<Bar>:echo<CR>", { desc = "Cancel search highlighting" })
@@ -38,24 +48,11 @@ keymap.set("n", "<ESC>", ":nohlsearch<Bar>:echo<CR>", { desc = "Cancel search hi
 keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Page up and center" })
 keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Page down and center" })
 
--- general
-keymap.set("n", "x", '"_x')
-keymap.set("n", "U", "<C-r>", { desc = "Redo action" })
-
 -- Buffer management
 keymap.set("n", "<leader>n", ":enew<CR>", { desc = "Create new buffer" }) -- create new buffer
-keymap.set("n", "gn", ":bnext<CR>", { desc = "Goto next buffer" })        -- go to next buffer
-keymap.set("n", "gp", ":bprev<CR>", { desc = "Goto previous buffer" })    -- go to previous buffer
+keymap.set("n", "gn", ":bnext<CR>", { desc = "Goto next buffer" }) -- go to next buffer
+keymap.set("n", "gp", ":bprev<CR>", { desc = "Goto previous buffer" }) -- go to previous buffer
 
 -- Window management
 keymap.set("n", "<C-w>v", "<C-w>v <C-w>l", { desc = "Split window vertically" })
 keymap.set("n", "<C-w>s", "<C-w>s <C-w>j", { desc = "Split window horizontally" })
-
--- Tabs
-keymap.set("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
-keymap.set("n", "<leader><tab>o", "<cmd>tabonly<cr>", { desc = "Close Other Tabs" })
-keymap.set("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
-keymap.set("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
-keymap.set("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
-keymap.set("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
-keymap.set("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
