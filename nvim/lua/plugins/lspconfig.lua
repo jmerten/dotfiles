@@ -28,19 +28,6 @@ return {
 	event = "VeryLazy",
 
 	init = function()
-		local sign = function(opts)
-			vim.fn.sign_define(opts.name, {
-				texthl = opts.name,
-				text = opts.text,
-				numhl = "",
-			})
-		end
-
-		-- sign({ name = "DiagnosticSignError", text = lazyUtil.icons.diagnostic.error })
-		-- sign({ name = "DiagnosticSignInfo", text = lazyUtil.icons.diagnostic.info })
-		-- sign({ name = "DiagnosticSignHint", text = lazyUtil.icons.diagnostic.hint })
-		-- sign({ name = "DiagnosticSignWarn", text = lazyUtil.icons.diagnostic.warn })
-
 		vim.diagnostic.config({
 			virtual_text = {
 				spacing = 4,
