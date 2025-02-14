@@ -1,0 +1,30 @@
+{
+  "folders": [
+    {
+      "name": "some name",
+      "path": "../some/project/path"
+    }
+  ],
+  "settings": {
+    // "go.goroot": "${env:GO_SFDC_BAZEL}/bazel-go-sfdc-bazel/external/rules_go~~go_sdk~go_sdk",
+    // "go.toolsEnvVars": {
+    //   "GOPACKAGESDRIVER": "${env:GO_SFDC_BAZEL}/tools/scripts/gopackagesdriver/gopackagesdriver.sh"
+    // },
+    "go.testFlags": [
+      "-timeout=2m",
+      "-race",
+      "-parallel=1"
+    ],
+    "go.buildTags": "integration",
+    "go.testTags": "integration",
+    "gopls": {
+      // "build.env": {
+      //   "GOPACKAGESDRIVER": "${workspaceFolder}/tools/scripts/gopackagesdriver/gopackagesdriver.sh"
+      // },
+      "build.directoryFilters": [
+        "-root",
+      ],
+      "build.expandWorkspaceToModule": false
+    },
+  }
+}
