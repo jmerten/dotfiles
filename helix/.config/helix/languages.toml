@@ -25,4 +25,4 @@ unusedvariable = true
 # install from: https://github.com/quantonganh/snippets-ls
 [language-server.snippets-ls]
 command = "snippets-ls"
-args = ["-config","/Users/jmerte/.config/helix/go-snippets.json"]
+args = ["-config","${HOME}/.config/helix/go-snippets.json"]

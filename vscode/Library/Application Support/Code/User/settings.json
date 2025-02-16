@@ -1,9 +1,9 @@
 {
     "workbench.colorTheme": "GitHub Dark Default",
-    "github-enterprise.uri": "https://git.soma.salesforce.com",
     "git.alwaysShowStagedChangesResourceGroup": true,
     "git.autofetch": false,
     "git.branchProtection": [
+        "main",
         "master"
     ],
     "git.mergeEditor": true,
@@ -14,7 +14,6 @@
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 100,
     "go.buildOnSave": "off",
-    "go.buildTags": "-tags=integration",
     "go.coverageOptions": "showCoveredCodeOnly",
     "go.coverMode": "atomic",
     "go.coverOnSingleTest": true,
@@ -33,10 +32,10 @@
     "go.lintTool": "golangci-lint",
     "go.lintOnSave": "file",
     "go.formatTool": "goimports",
-    "go.formatFlags": [
-        "-local",
-        "git.soma"
-    ],
+    // "go.formatFlags": [
+    //     "-local",
+    //     "test.com"
+    // ],
     "go.addTags": {
         "tags": "json",
         "options": "json=omitempty",
@@ -84,17 +83,7 @@
     "extensions.ignoreRecommendations": true,
     "diffEditor.ignoreTrimWhitespace": false,
     "gitlens.graph.dimMergeCommits": true,
-    "codeGenie.advanced.currentVersion": "6.7.7",
-    "codeGenie.settings.enabled": true,
-    "redhat.telemetry.enabled": false,
-    "sonarlint.connectedMode.connections.sonarqube": [
-        {
-            "serverUrl": "https://sonarqube.sfcq.buildndeliver-s.aws-esvc1-useast2.aws.sfdc.cl",
-            "connectionId": "https-sonarqube-sfcq-buildndeliver-s-aws-esvc1-useast2-aws-sfdc-cl-"
-        }
-    ],
     "editor.accessibilitySupport": "off",
-    "codeGenie.advanced.chat.enabled": true,
     "terminal.external.osxExec": "iTerm.app",
     "terminal.explorerKind": "external",
     "githubPullRequests.fileListLayout": "tree",

@@ -28,10 +28,10 @@ return {
 			formatters = {
 				goimports = {
 					command = "goimports",
-					args = {
-						"-local",
-						"git.soma", -- if needed
-					},
+					-- args = {
+					-- 	"-local",
+					-- 	"test.com", -- if needed
+					-- },
 					cwd = require("conform.util").root_file({ "go.mod" }),
 				},
 				golines = {

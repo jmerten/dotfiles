@@ -33,21 +33,23 @@
     "**/vendor",
     "**/node*"
   ],
-  
   // Formatter settings so we don't use the node version
   "formatter": "language_server",
-
   // LSP configs
   // Disable all LSPs by default to prevent Zed from downloading them
   "enable_language_server": false,
   "lsp": {
     "gopls": {
       "binary": {
-        "path": "/Users/jmerten/go/bin/gopls",
-        "arguments": ["-mode=stdio"]
+        "path": "${HOME}/go/bin/gopls",
+        "arguments": [
+          "-mode=stdio"
+        ]
       },
       "initialization_options": {
-        "buildFlags": ["-tags=integration"],
+        "buildFlags": [
+          "-tags=integration"
+        ],
         "analyses": {
           "shadow": true,
           "unusedparams": true,
@@ -56,11 +58,15 @@
         },
         "usePlaceholders": true,
         "staticcheck": true,
-        "directoryFilters": ["-node_modules"]
+        "directoryFilters": [
+          "-node_modules"
+        ]
       }
     },
     "pyright": {
-      "binary": { "path": "/usr/local/bin/pyright" },
+      "binary": {
+        "path": "/usr/local/bin/pyright"
+      },
       "initialization_options": {
         "checkOnType": false,
         "diagnostics": true,
@@ -76,10 +82,11 @@
       }
     },
     "rust-analyzer": {
-      "binary": { "path": "/Users/jmerten/.cargo/bin/rust-analyzer" }
+      "binary": {
+        "path": "${HOME}/.cargo/bin/rust-analyzer"
+      }
     }
   },
-
   // Language configuration
   "languages": {
     "Go": {
@@ -89,14 +96,17 @@
         {
           "external": {
             "command": "goimports",
-            "arguments": ["-local", "git.soma"]
+            "arguments": [
+              "-local",
+              "git.soma"
+            ]
           }
         },
         {
           "external": {
             "command": "golines",
             "arguments": [
-              "--base-formatter=goimports", 
+              "--base-formatter=goimports",
               "--shorten-comments",
               "--ignore-generated",
               "-m",
@@ -112,7 +122,9 @@
       "formatter": {
         "external": {
           "command": "rustfmt",
-          "arguments": ["--edition=2021"]
+          "arguments": [
+            "--edition=2021"
+          ]
         }
       }
     },
@@ -123,7 +135,6 @@
       "tab_size": 2
     }
   },
-
   // General configurations
   "server_url": "https://disable-zed-downloads.invalid",
   "telemetry": {
@@ -131,7 +142,6 @@
     "diagnostics": false
   },
   "auto_update": false,
-
   // Disable assistant and copilot (don't use)
   "assistant": {
     "enabled": false,

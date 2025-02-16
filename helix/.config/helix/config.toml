@@ -54,7 +54,7 @@ X = ":bc!" # force close the current buffer
 
 [keys.normal.space.t]
 # running test files
-# g = ":pipe /Users/jmerten/.config/helix/scripts/gotest"
+# g = ":pipe ${HOME}/.config/helix/scripts/gotest"
 # g = ":sh go test -v ./..."
 
 [keys.normal.space.i]
