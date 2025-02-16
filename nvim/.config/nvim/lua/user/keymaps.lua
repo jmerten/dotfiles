@@ -30,10 +30,10 @@ keymap.set("v", "<C-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv
 
 -- Diagnostics
 keymap.set("n", "]d", function()
-	vim.diagnostic.goto_next()
+  vim.diagnostic.goto_next()
 end, { desc = "LSP Goto next diagnostic" })
 keymap.set("n", "[d", function()
-	vim.diagnostic.goto_prev()
+  vim.diagnostic.goto_prev()
 end, { desc = "LSP Goto previous diagnostic" })
 
 -- General
@@ -50,8 +50,8 @@ keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Page down and center" })
 
 -- Buffer management
 keymap.set("n", "<leader>n", ":enew<CR>", { desc = "Create new buffer" }) -- create new buffer
-keymap.set("n", "gn", ":bnext<CR>", { desc = "Goto next buffer" }) -- go to next buffer
-keymap.set("n", "gp", ":bprev<CR>", { desc = "Goto previous buffer" }) -- go to previous buffer
+keymap.set("n", "gn", ":bnext<CR>", { desc = "Goto next buffer" })        -- go to next buffer
+keymap.set("n", "gp", ":bprev<CR>", { desc = "Goto previous buffer" })    -- go to previous buffer
 
 -- Window management
 keymap.set("n", "<C-w>v", "<C-w>v <C-w>l", { desc = "Split window vertically" })
