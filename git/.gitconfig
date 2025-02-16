@@ -1,0 +1,13 @@
+[user]
+	name = Jason Merten
+	email = jmerte@gmail.com
+	signingkey = 2DF7BDF84AB995A7
+[init]
+	defaultBranch = main
+[commit]
+	gpgsign = true
+[alias]
+	lo = log --oneline
+	a = add
+	cm = commit -m
+	ca = commit --amend
