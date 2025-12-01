@@ -80,12 +80,12 @@
     "description": "Snippet for if err != nil"
   },
   "fmt.Println": {
-    "prefix": "fp",
+    "prefix": "pl",
     "body": "fmt.Println(\"$1\")",
     "description": "Snippet for fmt.Println()"
   },
   "fmt.Printf": {
-    "prefix": "fpf",
+    "prefix": "pf",
     "body": "fmt.Printf(\"$1\", ${2:var})",
     "description": "Snippet for fmt.Printf()"
   },
