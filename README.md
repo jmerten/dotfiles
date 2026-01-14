@@ -1,25 +1,36 @@
 # Jmert's dotfiles
 
-## Easy dotfile management with `stow`
+## Easier dev environment management with `rotz`
 
-> Reference: https://gist.github.com/andreibosco/cb8506780d0942a712fc
+> Reference: https://volllly.github.io/rotz/docs/getting-started
 
-We can use `stow` (`brew install stow`) to help with managing the dotfiles stored in this repo. In a nutshell, this utility will create symlinks to our dotfiles based on the directory they sit in within the repo.
+We can use `rotz` (`brew install stow`) to help with managing our dev environment using the `dot.yaml` files stored in this repo. In a nutshell, this utility will install dependencies required for the various tools/editors and create symlinks to our dotfiles based on the directory they sit in within the repo.
+
+### Installation
+#### Windows
+```
+brew install volllly/tap/rotz
+```
+
+#### MacOS/Linux
+```
+scoop bucket add volllly https://github.com/volllly/scoop-bucket
+scoop install volllly/rotz
+```
+
+### Usage
 
 Example:
 ```
 # dotfiles in located in $HOME
 
-stow zsh    # stores the .zshrc file to $HOME/.zshrc
-stow nvim   # stores the nvim folder to $HOME/.config/nvim
-```
+rotz install    # installs all tools, and editors
+rotz link       # creates symlinks for the dotfiles
 
-You can modify the destination directory of the folder with the following:
-```
-stow <folder> -t <target>
+# If you only want to install/link a specific directory, use the following
+rotz -d ~/dotfiles/editors/vscode link
 
-# Example
-stow wezterm -t ../test
+# If you don't use the full path (`~/dotfiles/editors/vscode`), it will cause issues
 ```
 
 ## nvim

@@ -1,0 +1,5 @@
+global:
+  links:
+    settings.json: ~/.config/zed/settings.json
+    keymap.json: ~/.config/zed/settings.json
+    snippets: ~/.config/zed/snippets

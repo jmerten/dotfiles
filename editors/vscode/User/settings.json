@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "GitHub Dark Default",
+    // "workbench.colorTheme": "GitHub Dark Default",
     "git.alwaysShowStagedChangesResourceGroup": true,
     "git.autofetch": false,
     "git.branchProtection": [
@@ -20,7 +20,7 @@
     "go.coverOnSingleTestFile": true,
     "go.survey.prompt": false,
     "go.editorContextMenuCommands": {
-        "generateTestForFunction": false,
+        // "generateTestForFunction": false,
         "addImport": false,
         "playground": false
     },
@@ -45,7 +45,6 @@
     },
     "go.coverOnSave": false,
     "[go]": {
-        "editor.defaultFormatter": "golang.go",
         "editor.insertSpaces": false,
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
@@ -84,7 +83,6 @@
     "diffEditor.ignoreTrimWhitespace": false,
     "gitlens.graph.dimMergeCommits": true,
     "editor.accessibilitySupport": "off",
-    "terminal.external.osxExec": "iTerm.app",
     "terminal.explorerKind": "external",
     "githubPullRequests.fileListLayout": "tree",
     "telemetry.telemetryLevel": "off",
@@ -98,14 +96,10 @@
         "run -c golangci.yml",
         "--fast"
     ],
-    "editor.fontFamily": "JetBrainsMono Nerd Font",
+    // "editor.fontFamily": "JetBrainsMono Nerd Font",
     "database-client.autoSync": true,
     "chat.commandCenter.enabled": false,
     "python.createEnvironment.trigger": "off",
     "python.defaultInterpreterPath": "python3",
     "jupyter.askForKernelRestart": false,
-    "workbench.editorAssociations": {
-        "*.parquet": "jupyter-data-wrangler",
-        "file:/**/*.parquet": "jupyter-data-wrangler"
-    },
 }

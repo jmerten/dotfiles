@@ -4,8 +4,8 @@
 	signingkey = 2DF7BDF84AB995A7
 [init]
 	defaultBranch = main
-[commit]
-	gpgsign = true
+# [commit]
+# 	gpgsign = true
 [alias]
 	lo = log --oneline
 	a = add
