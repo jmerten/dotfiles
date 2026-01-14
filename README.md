@@ -7,15 +7,15 @@
 We can use `rotz` to help with managing our dev environment using the `dot.yaml` files stored in this repo. In a nutshell, this utility will install dependencies required for the various tools/editors and create symlinks to our dotfiles based on the directory they sit in within the repo.
 
 ### Installation
-#### Windows
+#### Windows (requires scoop to be installed)
 ```
-brew install volllly/tap/rotz
+scoop bucket add volllly https://github.com/volllly/scoop-bucket
+scoop install volllly/rotz
 ```
 
 #### MacOS/Linux
 ```
-scoop bucket add volllly https://github.com/volllly/scoop-bucket
-scoop install volllly/rotz
+brew install volllly/tap/rotz
 ```
 
 ### Usage
