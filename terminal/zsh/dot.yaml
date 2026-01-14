@@ -4,3 +4,7 @@ global:
 darwin|linux:
   links:
     .zshrc: ~/.zshrc
+  installs: brew install zsh-completions zsh-autosuggestions zsh-syntax-highlighting
+  depends:
+    - omz
+    - starship

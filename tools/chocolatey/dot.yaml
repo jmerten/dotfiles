@@ -4,4 +4,4 @@ global:
 windows:
   installs: |
     Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-    Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+    Invoke-RestMethod -Uri https://community.chocolatey.org/install.ps1 | Invoke-Expression

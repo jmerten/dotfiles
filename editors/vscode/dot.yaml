@@ -1,8 +1,14 @@
+global:
+  installs: false
+
 windows:
   links:
     User/settings.json: ~\AppData\Roaming\Code\User\settings.json
     User/keybindings.json: ~\AppData\Roaming\Code\User\keybindings.json
     User/snippets: ~\AppData\Roaming\Code\User\snippets
+  depends:
+    - ../tools/git
+  installs: winget install Microsoft.VisualStudioCode
 darwin:
   links:
     User/settings.json: ~/Library/Application Support/Code/User/settings.json

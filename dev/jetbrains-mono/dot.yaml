@@ -1,0 +1,7 @@
+global:
+  installs: false
+# windows:
+#   installs: choco install jetbrainsmono
+
+# linux|darwin:
+#   installs: brew install font-jetbrains-mono-nerd-font

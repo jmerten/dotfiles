@@ -1,3 +1,9 @@
 global:
-  links:
-    .wezterm.lua: ~/.wezterm.lua
+  installs: false
+  # links:
+  #   .wezterm.lua: ~/.wezterm.lua
+# linux|darwin:
+#   installs: brew install --cask wezterm
+#   depends:
+#     - ../tools/homebrew
+#     - ../dev/jetbrains-mono

@@ -102,4 +102,10 @@
     "python.createEnvironment.trigger": "off",
     "python.defaultInterpreterPath": "python3",
     "jupyter.askForKernelRestart": false,
+    "kilo-code.allowedCommands": [
+        "git log",
+        "git diff",
+        "git show"
+    ],
+    "kilo-code.deniedCommands": [],
 }

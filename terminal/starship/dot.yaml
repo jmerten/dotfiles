@@ -1,0 +1,3 @@
+installs:
+  cmd: cargo install starship
+  depends: [../dev/rust]

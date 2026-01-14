@@ -4,7 +4,7 @@
 
 > Reference: https://volllly.github.io/rotz/docs/getting-started
 
-We can use `rotz` (`brew install stow`) to help with managing our dev environment using the `dot.yaml` files stored in this repo. In a nutshell, this utility will install dependencies required for the various tools/editors and create symlinks to our dotfiles based on the directory they sit in within the repo.
+We can use `rotz` to help with managing our dev environment using the `dot.yaml` files stored in this repo. In a nutshell, this utility will install dependencies required for the various tools/editors and create symlinks to our dotfiles based on the directory they sit in within the repo.
 
 ### Installation
 #### Windows
@@ -41,7 +41,7 @@ Requirements:
 - go/gopls (`brew install go`, then run `go install golang.org/x/tools/gopls@latest`)
 - pyright (`brew install pyright`) 
 
-## .zshrc
+## .zshrc (linux/MacOS only)
 
 Requirements: 
 - JetBrainsMono NerdFont (`brew install font-jetbrains-mono-nerd-font`)
