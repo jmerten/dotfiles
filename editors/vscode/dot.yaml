@@ -6,9 +6,9 @@ windows:
     User/settings.json: ~\AppData\Roaming\Code\User\settings.json
     User/keybindings.json: ~\AppData\Roaming\Code\User\keybindings.json
     User/snippets: ~\AppData\Roaming\Code\User\snippets
+  installs: winget install Microsoft.VisualStudioCode
   depends:
     - ../tools/git
-  installs: winget install Microsoft.VisualStudioCode
 darwin:
   links:
     User/settings.json: ~/Library/Application Support/Code/User/settings.json

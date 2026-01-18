@@ -1,0 +1,12 @@
+global:
+  installs: false
+
+windows:
+  installs: choco install go -y
+  depends:
+    - ../tools/chocolatey
+
+linux|darwin:
+  installs: brew install go
+  depends:
+    - ../tools/homebrew

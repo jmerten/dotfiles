@@ -1,7 +1,9 @@
 windows:
   installs:
-    cmd: scoop install rustup
-    depends: [../tools/scoop]
-    
+    cmd: choco install rustup.install -y
+    depends: [../tools/chocolatey]
+
 linux|darwin:
-  installs: curl https://sh.rustup.rs -sSf | sh -s -- -y
+  installs: brew install rustup
+  depends:
+    - ../tools/homebrew
