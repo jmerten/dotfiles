@@ -1,7 +1,7 @@
 [user]
 	name = Jason Merten
 	email = jmerte@gmail.com
-	signingkey = FEA3E9CC01A5F599
+	signingkey = 2DF7BDF84AB995A7
 [init]
 	defaultBranch = main
 [commit]
