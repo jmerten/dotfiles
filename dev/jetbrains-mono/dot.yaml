@@ -1,7 +1,12 @@
 global:
   installs: false
+
 # windows:
 #   installs: choco install jetbrainsmono
+#   depends:
+#     - ../tools/chocolatey
 
 # linux|darwin:
 #   installs: brew install font-jetbrains-mono-nerd-font
+#   depends:
+#     - ../tools/homebrew

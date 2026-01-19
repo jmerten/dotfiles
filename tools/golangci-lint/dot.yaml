@@ -1,0 +1,7 @@
+global:
+  installs: false
+
+darwin:
+  installs: brew install golangci-lint
+  depends: 
+    - homebrew
