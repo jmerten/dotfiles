@@ -1,8 +1,17 @@
 [user]
-	name = Jason Merten
+	name = {{ .name | quote }}
 	email = {{ .email | quote }}
+	{{- if ne .gpg_key "" }}
+	signingkey = {{ .gpg_key | quote }}
+	{{- end }}
 [init]
 	defaultBranch = main
+{{- if ne .gpg_key "" }}
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
+{{- end }}
 [alias]
 	lo = log --oneline
 	a = add

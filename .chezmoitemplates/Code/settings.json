@@ -13,7 +13,6 @@
     },
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 100,
-    "go.buildOnSave": "off",
     "go.coverageOptions": "showCoveredCodeOnly",
     "go.coverMode": "atomic",
     "go.coverOnSingleTest": true,
@@ -101,11 +100,5 @@
     "chat.commandCenter.enabled": false,
     "python.createEnvironment.trigger": "off",
     "python.defaultInterpreterPath": "python3",
-    "jupyter.askForKernelRestart": false,
-    "kilo-code.allowedCommands": [
-        "git log",
-        "git diff",
-        "git show"
-    ],
-    "kilo-code.deniedCommands": [],
+    "jupyter.askForKernelRestart": false
 }
