@@ -1,0 +1,111 @@
+{
+    // "workbench.colorTheme": "GitHub Dark Default",
+    "git.alwaysShowStagedChangesResourceGroup": true,
+    "git.autofetch": false,
+    "git.branchProtection": [
+        "main",
+        "master"
+    ],
+    "git.mergeEditor": true,
+    "git.showActionButton": {
+        "publish": false,
+        "sync": false
+    },
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 100,
+    "go.buildOnSave": "off",
+    "go.coverageOptions": "showCoveredCodeOnly",
+    "go.coverMode": "atomic",
+    "go.coverOnSingleTest": true,
+    "go.coverOnSingleTestFile": true,
+    "go.survey.prompt": false,
+    "go.editorContextMenuCommands": {
+        // "generateTestForFunction": false,
+        "addImport": false,
+        "playground": false
+    },
+    "go.testFlags": [
+        "-race",
+        "-parallel=1"
+    ],
+    "go.toolsManagement.autoUpdate": true,
+    "go.lintTool": "golangci-lint",
+    "go.lintOnSave": "file",
+    "go.formatTool": "goimports",
+    // "go.formatFlags": [
+    //     "-local",
+    //     "test.com"
+    // ],
+    "go.addTags": {
+        "tags": "json",
+        "options": "json=omitempty",
+        "promptForTags": false,
+        "transform": "snakecase",
+        "template": ""
+    },
+    "go.coverOnSave": false,
+    "[go]": {
+        "editor.insertSpaces": false,
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit",
+        },
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+    },
+    "gopls": {
+        "build.buildFlags": [
+            "-tags=integration",
+        ],
+        "ui.diagnostic.analyses": {
+            "nilness": true,
+            "shadow": true,
+            "unusedparams": true,
+            "unusedvariable": true,
+            "useany": true,
+        },
+        "ui.semanticTokens": true,
+        "ui.completion.usePlaceholders": true
+    },
+    "editor.minimap.enabled": false,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": false,
+    "editor.formatOnType": false,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+    },
+    "editor.rulers": [
+        150
+    ],
+    "explorer.confirmDragAndDrop": false,
+    "githubPullRequests.pullBranch": "never",
+    "explorer.confirmDelete": false,
+    "extensions.ignoreRecommendations": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "gitlens.graph.dimMergeCommits": true,
+    "editor.accessibilitySupport": "off",
+    "terminal.explorerKind": "external",
+    "githubPullRequests.fileListLayout": "tree",
+    "telemetry.telemetryLevel": "off",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.cursorSurroundingLines": 8,
+    "go.inlayHints.parameterNames": true,
+    "go.inlayHints.functionTypeParameters": true,
+    "go.inlayHints.constantValues": true,
+    "go.inlayHints.rangeVariableTypes": true,
+    "go.lintFlags": [
+        "run -c golangci.yml",
+        "--fast"
+    ],
+    // "editor.fontFamily": "JetBrainsMono Nerd Font",
+    "database-client.autoSync": true,
+    "chat.commandCenter.enabled": false,
+    "python.createEnvironment.trigger": "off",
+    "python.defaultInterpreterPath": "python3",
+    "jupyter.askForKernelRestart": false,
+    "kilo-code.allowedCommands": [
+        "git log",
+        "git diff",
+        "git show"
+    ],
+    "kilo-code.deniedCommands": [],
+}

@@ -1,0 +1,30 @@
+# Files to ignore all the time
+.vscode
+dev
+editors
+terminal
+tools
+.gitignore
+defaults.yaml
+LICENSE
+README.md
+
+# VSCode Files
+{{ if lookPath "codium" }}
+# Ignore VSCode files if VSCodium is installed
+.config/Code**
+Library/Application Support/Code**
+{{ else if lookPath "code" }}
+# Ignore VSCodium files if VSCode is installed
+.config/VSCodium**
+Library/Application Support/VSCodium**
+{{ end }}
+
+# OS Specific files to ignore
+{{ if ne .chezmoi.os "linux" }}
+.config/Code
+.config/VSCodium
+{{ end }}
+{{ if ne .chezmoi.os "darwin" }}
+Library
+{{ end }}
