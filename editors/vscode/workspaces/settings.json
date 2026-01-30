@@ -1,9 +1,0 @@
-{
-    "gopls": {
-        "build.directoryFilters": [
-            "-root",
-            "+root/some/project"
-        ],
-        "build.expandWorkspaceToModule": false
-    }
-}
