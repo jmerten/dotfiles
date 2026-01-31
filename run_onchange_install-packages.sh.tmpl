@@ -1,0 +1,10 @@
+{{- if and ( eq .chezmoi.os "linux") ( eq .chezmoi.osRelease.idLike "arch" ) -}}
+#!/bin/bash
+set -eu
+
+# Install packages, if needed, using pacman
+sudo pacman -Syy --needed {{ join " " .packages.arch.pacman }}
+
+# Install AUR packages, if needed, using yay
+sudo yay -Syyua --needed {{ join " " .packages.arch.aur }}
+{{- end -}}

@@ -1,0 +1,12 @@
+packages:
+  arch:
+    pacman:
+      - gnome-shell-extension-appindicator
+      - starship
+      - ttf-jetbrains-mono-nerd
+      - helix
+      - github-cli
+      - yay
+    aur:
+      - vscodium-bin
+      - 1password
