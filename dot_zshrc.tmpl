@@ -108,7 +108,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-{{ if lookPath "helix" }}alias hx=helix{{ end }}
+{{- if lookPath "helix" }}
+alias hx=helix
+{{- end }}
 
 # Install starship
 eval "$(starship init zsh)"
