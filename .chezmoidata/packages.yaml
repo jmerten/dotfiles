@@ -1,4 +1,8 @@
 packages:
+  fedora:
+    - zsh
+    - git
+    - jetbrains-mono-fonts
   arch:
     pacman:
       - gnome-shell-extension-appindicator
