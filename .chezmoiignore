@@ -20,6 +20,11 @@ Library/Application Support/Code**
 Library/Application Support/VSCodium**
 {{ end }}
 
+{{- if lookPath "zed" -}}
+{{ else }}
+.config/zed**
+{{- end -}}
+
 # OS Specific files to ignore
 {{ if ne .chezmoi.os "linux" }}
 .config/Code
